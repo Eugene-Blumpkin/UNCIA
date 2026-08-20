@@ -1,4 +1,5 @@
 <title>UNCIA</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap">
 
@@ -55,20 +56,24 @@
     font-family:var(--font-mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase;
     color:var(--dim); white-space:nowrap;
   }
+  .topbar-link{ transition:color .2s ease; }
   .topbar-link:hover{ color:var(--paper); }
   .btn{
     font-family:var(--font-mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase;
     padding:10px 16px; cursor:pointer; border:1px solid var(--paper); background:none; color:var(--paper);
     white-space:nowrap; display:inline-block;
+    transition:background-color .2s ease, color .2s ease, transform .2s ease, opacity .2s ease;
   }
-  .btn:hover{ background:var(--paper); color:var(--void); }
+  .btn:hover{ background:var(--paper); color:var(--void); transform:translateY(-2px); }
+  .btn:active{ transform:translateY(0) scale(.97); }
   .btn.solid{ background:var(--signal); color:var(--void); border-color:var(--signal); }
-  .btn.solid:hover{ opacity:.85; background:var(--signal); color:var(--void); }
+  .btn.solid:hover{ opacity:.85; background:var(--signal); color:var(--void); transform:translateY(-2px); }
 
   .lang-switch{ display:flex; gap:1px; background:var(--line); border:1px solid var(--line); }
   .lang-switch button{
     background:var(--void); border:none; color:var(--dim); cursor:pointer;
     font-family:var(--font-mono); font-size:10.5px; letter-spacing:.06em; padding:8px 10px;
+    transition:background-color .2s ease, color .2s ease;
   }
   .lang-switch button.active{ background:var(--signal); color:var(--void); }
 
@@ -100,6 +105,22 @@
     .fade-up.d3{ animation-delay:.27s; }
     .fade-up.d4{ animation-delay:.38s; }
     @keyframes fadeUp{ to{ opacity:1; transform:translateY(0); } }
+
+    .reveal{ opacity:0; transform:translateY(28px); transition:opacity .7s ease, transform .7s ease; }
+    .reveal.in-view{ opacity:1; transform:translateY(0); }
+    .reveal.d1.in-view{ transition-delay:.05s; }
+    .reveal.d2.in-view{ transition-delay:.13s; }
+    .reveal.d3.in-view{ transition-delay:.21s; }
+    .reveal.d4.in-view{ transition-delay:.29s; }
+
+    .hero-mark-bg{ animation:markDrift 16s ease-in-out infinite; }
+    @keyframes markDrift{
+      0%, 100%{ transform:translateY(0) rotate(0deg); }
+      50%{ transform:translateY(-10px) rotate(-1deg); }
+    }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ opacity:1; transform:none; }
   }
 
   /* ---------- stat strip ---------- */
@@ -126,7 +147,8 @@
   .section-kicker{ font-family:var(--font-mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--dim); }
 
   .pillar-grid{ display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); }
-  .pillar{ background:var(--void); padding:36px 30px; }
+  .pillar{ background:var(--void); padding:36px 30px; transition:background-color .25s ease, transform .25s ease; }
+  .pillar:hover{ background:var(--panel); transform:translateY(-3px); }
   .pillar-num{ font-family:var(--font-mono); font-size:12px; color:var(--dim); }
   .pillar-title{ font-size:19px; font-weight:600; margin-top:14px; }
   .pillar-desc{ font-size:14.5px; line-height:1.7; color:var(--dim); margin-top:12px; }
@@ -157,7 +179,8 @@
 
   /* ---------- roadmap ---------- */
   .roadmap{ padding:104px 0; border-bottom:1px solid var(--line-2); }
-  .roadmap-row{ display:flex; align-items:center; gap:16px; padding:15px 4px; border-top:1px solid var(--line); }
+  .roadmap-row{ display:flex; align-items:center; gap:16px; padding:15px 4px; border-top:1px solid var(--line); transition:background-color .2s ease, padding-left .2s ease; }
+  .roadmap-row:hover{ background:var(--panel); padding-left:10px; }
   .roadmap-list{ border-bottom:1px solid var(--line); }
   .roadmap-dot{ width:7px; height:7px; border-radius:50%; border:1px solid var(--paper); background:transparent; flex-shrink:0; }
   .roadmap-dot.on{ background:var(--paper); }
@@ -179,13 +202,13 @@
   .field-label{ font-family:var(--font-mono); font-size:10px; color:var(--dim); margin-bottom:7px; text-transform:uppercase; letter-spacing:.1em; }
   .field input{
     width:100%; background:var(--panel); border:1px solid var(--line); padding:12px 12px;
-    color:var(--paper); font-size:14px; outline:none;
+    color:var(--paper); font-size:14px; outline:none; transition:border-color .2s ease;
   }
   .field input:focus{ border-color:var(--paper); }
   .field textarea{
     width:100%; background:var(--panel); border:1px solid var(--line); padding:12px;
     color:var(--paper); font-size:14px; font-family:var(--font-body); outline:none;
-    min-height:120px; resize:vertical; line-height:1.5;
+    min-height:120px; resize:vertical; line-height:1.5; transition:border-color .2s ease;
   }
   .field textarea:focus{ border-color:var(--paper); }
 
@@ -193,15 +216,18 @@
   .segmented button{
     flex:1; background:var(--void); border:none; color:var(--dim); padding:13px 10px;
     font-family:var(--font-mono); font-size:11.5px; letter-spacing:.06em; text-transform:uppercase; cursor:pointer;
+    transition:background-color .2s ease, color .2s ease;
   }
   .segmented button.active{ background:var(--signal); color:var(--void); }
 
   .waitlist-submit{
     margin-top:22px; width:100%; background:var(--signal); color:var(--void); border:none;
+    transition:opacity .2s ease, transform .2s ease;
     padding:15px 0; font-family:var(--font-mono); font-size:12.5px; letter-spacing:.1em;
     text-transform:uppercase; cursor:pointer;
   }
-  .waitlist-submit:hover{ opacity:.85; }
+  .waitlist-submit:hover{ opacity:.85; transform:translateY(-2px); }
+  .waitlist-submit:active{ transform:translateY(0) scale(.98); }
   .waitlist-note{ font-size:12px; color:var(--dim-2); margin-top:14px; line-height:1.5; }
   .waitlist-confirm{
     margin-top:16px; font-family:var(--font-mono); font-size:12px; color:var(--paper);
@@ -220,38 +246,51 @@
   .footer-right{ font-family:var(--font-mono); font-size:11px; color:var(--dim-2); letter-spacing:.04em; }
   .footer-right a:hover{ color:var(--paper); }
 
-  /* ---------- mobile: one section per screen ---------- */
+  /* ---------- mobile: bigger, roomier type ---------- */
   @media (max-width:640px){
-    .topbar{ position:sticky; top:0; z-index:20; background:var(--void); padding:14px 0; }
-    .topbar-mark{ width:48px; }
-    .topbar-name{ font-size:15px; }
+    .topbar{ position:sticky; top:0; z-index:20; background:var(--void); padding:16px 0; }
+    .topbar-mark{ width:52px; }
+    .topbar-name{ font-size:17px; }
+    .topbar-link{ font-size:12px; }
+    .btn{ font-size:13px; padding:12px 18px; }
 
     .hero, .thesis, .pillars, .audience, .roadmap, .waitlist{
-      padding-top:48px; padding-bottom:48px;
+      padding-top:56px; padding-bottom:56px;
     }
 
-    .hero h1{ font-size:clamp(46px, 13vw, 60px); }
-    .hero-sub{ font-size:18px; line-height:1.65; }
-    .hero-mark-bg{ width:60%; right:-8%; top:-2%; opacity:.22; }
+    .eyebrow{ font-size:12px; }
+    .hero h1{ font-size:clamp(56px, 16vw, 72px); }
+    .hero-sub{ font-size:20px; line-height:1.6; }
+    .hero-mark-bg{ width:65%; right:-10%; top:-2%; opacity:.24; }
 
-    .stats .num{ font-size:30px; }
-    .stats .label{ font-size:13px; }
+    .stats .num{ font-size:36px; }
+    .stats .label{ font-size:14px; }
 
-    .thesis h2{ font-size:28px; }
-    .thesis p{ font-size:17.5px; }
+    .thesis h2{ font-size:34px; }
+    .thesis p{ font-size:19px; }
 
-    .section-title{ font-size:26px; }
-    .pillar-title{ font-size:21px; }
-    .pillar-desc{ font-size:16px; }
-    .pillar-chip{ font-size:11.5px; }
+    .section-title{ font-size:30px; }
+    .section-kicker{ font-size:12px; }
+    .pillar-title{ font-size:24px; }
+    .pillar-desc{ font-size:17px; }
+    .pillar-chip{ font-size:12px; padding:6px 10px; }
 
-    .audience-title{ font-size:23px; }
-    .audience-list li{ font-size:16px; }
+    .audience-title{ font-size:26px; }
+    .audience-kicker{ font-size:12px; }
+    .audience-list li{ font-size:17px; }
+    .audience-list li strong{ font-size:17.5px; }
 
-    .roadmap-city{ font-size:16px; }
+    .roadmap-city{ font-size:18px; }
+    .roadmap-status{ font-size:12px; }
 
-    .waitlist h2{ font-size:30px; }
-    .waitlist p.lede{ font-size:16px; }
+    .waitlist h2{ font-size:34px; }
+    .waitlist p.lede{ font-size:17px; }
+    .field-label{ font-size:11px; }
+    .field input, .field textarea{ font-size:16px; padding:14px 12px; }
+    .waitlist-submit{ font-size:14px; padding:17px 0; }
+    .waitlist-note{ font-size:13px; }
+
+    .footer-brand, .footer-right{ font-size:12px; }
   }
 </style>
 
@@ -299,16 +338,16 @@
 </section>
 
 <div class="stats">
-  <div><div class="num">05</div><div class="label" data-i18n="stats.events">clubs &amp; events we're mapping</div></div>
-  <div><div class="num">18</div><div class="label" data-i18n="stats.trails">trails &amp; routes catalogued</div></div>
-  <div><div class="num">05</div><div class="label" data-i18n="stats.rare">rare finds tracked</div></div>
-  <div><div class="num">05</div><div class="label" data-i18n="stats.perks">local perks we're lining up</div></div>
+  <div><div class="num" data-count="5" data-pad="2">00</div><div class="label" data-i18n="stats.events">clubs &amp; events we're mapping</div></div>
+  <div><div class="num" data-count="18" data-pad="2">00</div><div class="label" data-i18n="stats.trails">trails &amp; routes catalogued</div></div>
+  <div><div class="num" data-count="5" data-pad="2">00</div><div class="label" data-i18n="stats.rare">rare finds tracked</div></div>
+  <div><div class="num" data-count="5" data-pad="2">00</div><div class="label" data-i18n="stats.perks">local perks we're lining up</div></div>
 </div>
 
 <section class="thesis">
   <div class="shell">
-    <h2 data-i18n="thesis.h2">We're building this to get people outside.</h2>
-    <p data-i18n="thesis.p">
+    <h2 class="reveal" data-i18n="thesis.h2">We're building this to get people outside.</h2>
+    <p class="reveal d1" data-i18n="thesis.p">
       Not another fitness-tracking app, not a loyalty scheme &mdash; just an easier reason to leave the
       house. Log what you actually did, and watch it add up into something worth doing again.
     </p>
@@ -318,11 +357,11 @@
 <section class="pillars">
   <div class="shell">
     <div class="section-head">
-      <div class="section-title" data-i18n="pillars.title">What we're building</div>
+      <div class="section-title reveal" data-i18n="pillars.title">What we're building</div>
       <div class="section-kicker" data-i18n="pillars.kicker">Four parts, one manifest</div>
     </div>
     <div class="pillar-grid">
-      <div class="pillar">
+      <div class="pillar reveal">
         <div class="pillar-num">01</div>
         <div class="pillar-title" data-i18n="pillar1.title">Explore</div>
         <div class="pillar-desc" data-i18n="pillar1.desc">Trails we've mapped around Almaty, plus the races and club rides happening around the city &mdash; all in one place.</div>
@@ -332,7 +371,7 @@
           <span class="pillar-chip">Saturday club ride</span>
         </div>
       </div>
-      <div class="pillar">
+      <div class="pillar reveal d1">
         <div class="pillar-num">02</div>
         <div class="pillar-title" data-i18n="pillar2.title">Manifest</div>
         <div class="pillar-desc" data-i18n="pillar2.desc">Log every hike, race or ride. Your manifest fills in, rare finds get flagged, badges unlock.</div>
@@ -342,7 +381,7 @@
           <span class="pillar-chip">Full Manifest</span>
         </div>
       </div>
-      <div class="pillar">
+      <div class="pillar reveal d2">
         <div class="pillar-num">03</div>
         <div class="pillar-title" data-i18n="pillar3.title">Gather</div>
         <div class="pillar-desc" data-i18n="pillar3.desc">Group hikes, races and club rides already happening around Almaty &mdash; we're bringing them into one place.</div>
@@ -351,7 +390,7 @@
           <span class="pillar-chip">Free running Sunday</span>
         </div>
       </div>
-      <div class="pillar">
+      <div class="pillar reveal d3">
         <div class="pillar-num">04</div>
         <div class="pillar-title" data-i18n="pillar4.title">Earn</div>
         <div class="pillar-desc" data-i18n="pillar4.desc">Show up enough and we want the city to pay you back &mdash; real perks at local caf&eacute;s and shops, not points that vanish.</div>
@@ -367,11 +406,11 @@
 <section class="audience">
   <div class="shell">
     <div class="section-head">
-      <div class="section-title" data-i18n="audience.title">Built for two kinds of explorer</div>
+      <div class="section-title reveal" data-i18n="audience.title">Built for two kinds of explorer</div>
       <div class="section-kicker" data-i18n="audience.kicker">Same manifest, different reasons</div>
     </div>
     <div class="audience-grid">
-      <div class="audience-col">
+      <div class="audience-col reveal">
         <div class="audience-kicker" data-i18n="audience.local.kicker">If you live here</div>
         <div class="audience-title" data-i18n="audience.local.title">Turn your weekends into something worth remembering.</div>
         <ul class="audience-list">
@@ -380,7 +419,7 @@
           <li data-i18n="audience.local.li3"><strong>Get something back locally.</strong> We're setting up real perks at local caf&eacute;s and shops &mdash; not points that expire into nothing.</li>
         </ul>
       </div>
-      <div class="audience-col">
+      <div class="audience-col reveal d1">
         <div class="audience-kicker" data-i18n="audience.visiting.kicker">If you're just passing through</div>
         <div class="audience-title" data-i18n="audience.visiting.title">See Almaty the way locals actually live it, not the way a guidebook does.</div>
         <ul class="audience-list">
@@ -396,10 +435,10 @@
 <section class="roadmap">
   <div class="shell">
     <div class="section-head">
-      <div class="section-title" data-i18n="roadmap.title">Almaty first</div>
+      <div class="section-title reveal" data-i18n="roadmap.title">Almaty first</div>
       <div class="section-kicker" data-i18n="roadmap.kicker">Then the rest of Kazakhstan</div>
     </div>
-    <div class="roadmap-list">
+    <div class="roadmap-list reveal">
       <div class="roadmap-row">
         <span class="roadmap-dot on"></span>
         <span class="roadmap-city on" data-i18n="roadmap.city1">Almaty &amp; the Tian Shan foothills</span>
@@ -427,9 +466,9 @@
 <section class="waitlist" id="waitlist">
   <div class="shell">
     <div class="waitlist-inner">
-      <div class="section-kicker" style="margin-bottom:14px" data-i18n="waitlist.kicker">Wishlist</div>
-      <h2 data-i18n="waitlist.h2">Be there when Almaty opens.</h2>
-      <p class="lede" data-i18n="waitlist.lede">Tell us who you are and we'll reach out directly &mdash; no account, no mailing list, just us.</p>
+      <div class="section-kicker reveal" style="margin-bottom:14px" data-i18n="waitlist.kicker">Wishlist</div>
+      <h2 class="reveal d1" data-i18n="waitlist.h2">Be there when Almaty opens.</h2>
+      <p class="lede reveal d2" data-i18n="waitlist.lede">Tell us who you are and we'll reach out directly &mdash; no account, no mailing list, just us.</p>
 
       <form id="waitlist-form" action="https://api.web3forms.com/submit" method="POST" target="_blank">
         <input type="hidden" name="access_key" value="0a65da0f-50c7-4a01-8f82-bba8200d7fe5">
@@ -466,9 +505,9 @@
 <section class="waitlist" id="suggest">
   <div class="shell">
     <div class="waitlist-inner">
-      <div class="section-kicker" style="margin-bottom:14px" data-i18n="suggest.kicker">Suggestion box</div>
-      <h2 data-i18n="suggest.h2">Something we should build or fix?</h2>
-      <p class="lede" data-i18n="suggest.lede">A feature idea, a bit of the UI that's bugging you, anything you'd change &mdash; tell us. We read everything.</p>
+      <div class="section-kicker reveal" style="margin-bottom:14px" data-i18n="suggest.kicker">Suggestion box</div>
+      <h2 class="reveal d1" data-i18n="suggest.h2">Something we should build or fix?</h2>
+      <p class="lede reveal d2" data-i18n="suggest.lede">A feature idea, a bit of the UI that's bugging you, anything you'd change &mdash; tell us. We read everything.</p>
 
       <form id="suggest-form" action="https://api.web3forms.com/submit" method="POST" target="_blank">
         <input type="hidden" name="access_key" value="0a65da0f-50c7-4a01-8f82-bba8200d7fe5">
@@ -774,6 +813,57 @@
   });
 
   applyLang(detectLang());
+
+  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if("IntersectionObserver" in window){
+    var revealObserver = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add("in-view");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold:0.15, rootMargin:"0px 0px -40px 0px" });
+    document.querySelectorAll(".reveal").forEach(function(el){ revealObserver.observe(el); });
+  } else {
+    document.querySelectorAll(".reveal").forEach(function(el){ el.classList.add("in-view"); });
+  }
+
+  function animateCount(el){
+    var target = parseInt(el.getAttribute("data-count"), 10) || 0;
+    var pad = parseInt(el.getAttribute("data-pad"), 10) || 0;
+    if(reduceMotion){
+      el.textContent = String(target).padStart(pad, "0");
+      return;
+    }
+    var start = null;
+    var duration = 900;
+    function step(ts){
+      if(start === null) start = ts;
+      var progress = Math.min((ts - start) / duration, 1);
+      var eased = 1 - Math.pow(1 - progress, 3);
+      var value = Math.round(eased * target);
+      el.textContent = String(value).padStart(pad, "0");
+      if(progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  var statsEl = document.querySelector(".stats");
+  if(statsEl && "IntersectionObserver" in window){
+    var statsObserver = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          document.querySelectorAll(".stats .num[data-count]").forEach(animateCount);
+          statsObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold:0.4 });
+    statsObserver.observe(statsEl);
+  } else if(statsEl){
+    document.querySelectorAll(".stats .num[data-count]").forEach(animateCount);
+  }
 
   var audience = "local";
   var audienceField = document.getElementById("wl-audience");
