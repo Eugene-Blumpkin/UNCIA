@@ -222,17 +222,12 @@
 
   /* ---------- mobile: one section per screen ---------- */
   @media (max-width:640px){
-    html{ scroll-snap-type:y mandatory; scroll-padding-top:64px; }
-
     .topbar{ position:sticky; top:0; z-index:20; background:var(--void); padding:14px 0; }
     .topbar-mark{ width:48px; }
     .topbar-name{ font-size:15px; }
 
     .hero, .thesis, .pillars, .audience, .roadmap, .waitlist{
-      scroll-snap-align:start;
-      min-height:100vh; min-height:100svh;
-      display:flex; flex-direction:column; justify-content:center;
-      box-sizing:border-box; padding-top:28px; padding-bottom:28px;
+      padding-top:48px; padding-bottom:48px;
     }
 
     .hero h1{ font-size:clamp(46px, 13vw, 60px); }
