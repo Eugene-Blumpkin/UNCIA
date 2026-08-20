@@ -48,7 +48,7 @@
     gap:16px; padding:22px 0; border-bottom:1px solid var(--line-2);
   }
   .topbar-brand{ display:flex; align-items:center; gap:10px; }
-  .topbar-mark{ width:64px; color:var(--paper); }
+  .topbar-mark{ width:80px; color:var(--paper); }
   .topbar-name{ font-family:var(--font-display); font-size:16px; letter-spacing:.5px; }
   .topbar-right{ display:flex; align-items:center; gap:22px; }
   .topbar-link{
@@ -75,8 +75,8 @@
   /* ---------- hero ---------- */
   .hero{ position:relative; padding:96px 0 64px; overflow:hidden; }
   .hero-mark-bg{
-    position:absolute; top:-14%; right:-24%; width:105%; color:var(--paper);
-    opacity:.32; z-index:0; pointer-events:none;
+    position:absolute; top:-8%; right:-14%; width:80%; color:var(--paper);
+    opacity:.20; z-index:0; pointer-events:none;
   }
   .hero-inner{ position:relative; z-index:1; max-width:660px; }
   .eyebrow{
@@ -102,7 +102,7 @@
     @keyframes fadeUp{ to{ opacity:1; transform:translateY(0); } }
   }
 
-  @media (max-width:640px){ .hero-mark-bg{ width:170%; right:-45%; top:-2%; opacity:.28; } }
+  @media (max-width:640px){ .hero-mark-bg{ width:135%; right:-30%; top:2%; opacity:.16; } }
 
   /* ---------- stat strip ---------- */
   .stats{
@@ -115,23 +115,23 @@
   @media (max-width:640px){ .stats{ grid-template-columns:repeat(2,1fr); } }
 
   /* ---------- thesis ---------- */
-  .thesis{ padding:88px 0; border-bottom:1px solid var(--line-2); }
+  .thesis{ padding:104px 0; border-bottom:1px solid var(--line-2); }
   .thesis h2{
     font-family:var(--font-display); font-size:clamp(24px,3.4vw,36px); line-height:1.2; max-width:720px;
   }
-  .thesis p{ font-size:15px; line-height:1.7; color:var(--dim); margin-top:20px; max-width:600px; }
+  .thesis p{ font-size:16px; line-height:1.75; color:var(--dim); margin-top:22px; max-width:600px; }
 
   /* ---------- pillars ---------- */
-  .pillars{ padding:88px 0; border-bottom:1px solid var(--line-2); }
+  .pillars{ padding:104px 0; border-bottom:1px solid var(--line-2); }
   .section-head{ display:flex; align-items:baseline; justify-content:space-between; gap:16px; margin-bottom:44px; flex-wrap:wrap; }
   .section-title{ font-family:var(--font-display); font-size:clamp(22px,3vw,30px); }
   .section-kicker{ font-family:var(--font-mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--dim); }
 
   .pillar-grid{ display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); }
-  .pillar{ background:var(--void); padding:30px 28px; }
+  .pillar{ background:var(--void); padding:36px 30px; }
   .pillar-num{ font-family:var(--font-mono); font-size:12px; color:var(--dim); }
   .pillar-title{ font-size:19px; font-weight:600; margin-top:14px; }
-  .pillar-desc{ font-size:14px; line-height:1.6; color:var(--dim); margin-top:10px; }
+  .pillar-desc{ font-size:14.5px; line-height:1.7; color:var(--dim); margin-top:12px; }
   .pillar-sample{ display:flex; gap:8px; flex-wrap:wrap; margin-top:16px; }
   .pillar-chip{
     font-family:var(--font-mono); font-size:10.5px; letter-spacing:.04em; color:var(--dim);
@@ -140,7 +140,7 @@
   @media (max-width:720px){ .pillar-grid{ grid-template-columns:1fr; } }
 
   /* ---------- audience split ---------- */
-  .audience{ padding:88px 0; border-bottom:1px solid var(--line-2); }
+  .audience{ padding:104px 0; border-bottom:1px solid var(--line-2); }
   .audience-grid{ display:grid; grid-template-columns:1fr 1fr; }
   .audience-col{ padding:0 40px 0 0; }
   .audience-col + .audience-col{ padding:0 0 0 40px; border-left:1px solid var(--line-2); }
@@ -148,7 +148,7 @@
   .audience-title{ font-family:var(--font-display); font-size:clamp(20px,2.6vw,26px); margin-top:12px; line-height:1.2; }
   .audience-list{ list-style:none; margin:22px 0 0; padding:0; }
   .audience-list li{
-    font-size:14px; line-height:1.5; color:var(--dim); padding:12px 0; border-top:1px solid var(--line-2);
+    font-size:14.5px; line-height:1.65; color:var(--dim); padding:16px 0; border-top:1px solid var(--line-2);
   }
   .audience-list li:first-child{ border-top:none; }
   .audience-list li strong{ color:var(--paper); font-weight:600; display:block; margin-bottom:3px; font-size:14.5px; }
@@ -158,7 +158,7 @@
   }
 
   /* ---------- roadmap ---------- */
-  .roadmap{ padding:88px 0; border-bottom:1px solid var(--line-2); }
+  .roadmap{ padding:104px 0; border-bottom:1px solid var(--line-2); }
   .roadmap-row{ display:flex; align-items:center; gap:16px; padding:15px 4px; border-top:1px solid var(--line); }
   .roadmap-list{ border-bottom:1px solid var(--line); }
   .roadmap-dot{ width:7px; height:7px; border-radius:50%; border:1px solid var(--paper); background:transparent; flex-shrink:0; }
@@ -171,7 +171,7 @@
   }
 
   /* ---------- waitlist ---------- */
-  .waitlist{ padding:88px 0; }
+  .waitlist{ padding:104px 0; }
   .waitlist-inner{ max-width:520px; }
   .waitlist h2{ font-family:var(--font-display); font-size:clamp(26px,4vw,40px); line-height:1.15; }
   .waitlist p.lede{ font-size:15px; color:var(--dim); margin-top:16px; line-height:1.6; }
@@ -216,7 +216,7 @@
     border-top:1px solid var(--line-2); padding:36px 0 60px;
     display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
   }
-  .footer-mark{ width:46px; color:var(--paper); }
+  .footer-mark{ width:60px; color:var(--paper); }
   .footer-left{ display:flex; align-items:center; gap:10px; }
   .footer-brand{ font-family:var(--font-mono); font-size:11px; color:var(--dim); letter-spacing:.06em; }
   .footer-right{ font-family:var(--font-mono); font-size:11px; color:var(--dim-2); letter-spacing:.04em; }
@@ -278,8 +278,7 @@
     <h2 data-i18n="thesis.h2">We're building this to get people outside.</h2>
     <p data-i18n="thesis.p">
       Not another fitness-tracking app, not a loyalty scheme &mdash; just an easier reason to leave the
-      house. Log the hike, the race, the walk you actually did, and watch it add up into something worth
-      showing up for again.
+      house. Log what you actually did, and watch it add up into something worth doing again.
     </p>
   </div>
 </section>
@@ -294,7 +293,7 @@
       <div class="pillar">
         <div class="pillar-num">01</div>
         <div class="pillar-title" data-i18n="pillar1.title">Explore</div>
-        <div class="pillar-desc" data-i18n="pillar1.desc">Trails we've already mapped around Almaty, plus the races, club rides and events happening around the city &mdash; catalogued in one place, tagged by what it actually takes to show up.</div>
+        <div class="pillar-desc" data-i18n="pillar1.desc">Trails we've mapped around Almaty, plus the races and club rides happening around the city &mdash; all in one place.</div>
         <div class="pillar-sample">
           <span class="pillar-chip">Kok-Zhailau Plateau</span>
           <span class="pillar-chip">Almaty Marathon</span>
@@ -304,7 +303,7 @@
       <div class="pillar">
         <div class="pillar-num">02</div>
         <div class="pillar-title" data-i18n="pillar2.title">Manifest</div>
-        <div class="pillar-desc" data-i18n="pillar2.desc">Log everything you complete &mdash; a hike, a race, a group ride. Your personal manifest fills in, rare finds get flagged, and badges unlock as you go.</div>
+        <div class="pillar-desc" data-i18n="pillar2.desc">Log every hike, race or ride. Your manifest fills in, rare finds get flagged, badges unlock.</div>
         <div class="pillar-sample">
           <span class="pillar-chip">First Catalogue</span>
           <span class="pillar-chip">Rare Sighting</span>
@@ -314,7 +313,7 @@
       <div class="pillar">
         <div class="pillar-num">03</div>
         <div class="pillar-title" data-i18n="pillar3.title">Gather</div>
-        <div class="pillar-desc" data-i18n="pillar3.desc">The group hikes, races and club rides already happening around Almaty &mdash; we're building the bridge to bring them into one place, so showing up together gets easier.</div>
+        <div class="pillar-desc" data-i18n="pillar3.desc">Group hikes, races and club rides already happening around Almaty &mdash; we're bringing them into one place.</div>
         <div class="pillar-sample">
           <span class="pillar-chip">Almaty Marathon</span>
           <span class="pillar-chip">Free running Sunday</span>
@@ -323,7 +322,7 @@
       <div class="pillar">
         <div class="pillar-num">04</div>
         <div class="pillar-title" data-i18n="pillar4.title">Earn</div>
-        <div class="pillar-desc" data-i18n="pillar4.desc">Show up enough and we want the city to start paying you back &mdash; real perks at local caf&eacute;s and shops, not points that vanish. We're bringing partners on board now.</div>
+        <div class="pillar-desc" data-i18n="pillar4.desc">Show up enough and we want the city to pay you back &mdash; real perks at local caf&eacute;s and shops, not points that vanish.</div>
         <div class="pillar-sample">
           <span class="pillar-chip" data-i18n="pillar4.chip1">Local cafés</span>
           <span class="pillar-chip" data-i18n="pillar4.chip2">Gear shops</span>
@@ -344,17 +343,17 @@
         <div class="audience-kicker" data-i18n="audience.local.kicker">If you live here</div>
         <div class="audience-title" data-i18n="audience.local.title">Turn your weekends into something worth remembering.</div>
         <ul class="audience-list">
-          <li data-i18n="audience.local.li1"><strong>Stop losing plans to a group chat.</strong> Every hike, race or ride you do joins a manifest that's actually yours.</li>
-          <li data-i18n="audience.local.li2"><strong>Find your people.</strong> Rare finds and full-category badges keep pulling you toward the next thing worth showing up for &mdash; and the crowd that shows up with you.</li>
-          <li data-i18n="audience.local.li3"><strong>Get something back locally.</strong> We're setting up real perks at caf&eacute;s and shops near wherever you end up &mdash; not points that expire into nothing.</li>
+          <li data-i18n="audience.local.li1"><strong>Stop losing plans to a group chat.</strong> Every hike, race or ride joins a manifest that's actually yours.</li>
+          <li data-i18n="audience.local.li2"><strong>Find your people.</strong> Badges and rare finds keep pulling you toward the next thing worth showing up for.</li>
+          <li data-i18n="audience.local.li3"><strong>Get something back locally.</strong> We're setting up real perks at local caf&eacute;s and shops &mdash; not points that expire into nothing.</li>
         </ul>
       </div>
       <div class="audience-col">
         <div class="audience-kicker" data-i18n="audience.visiting.kicker">If you're just passing through</div>
         <div class="audience-title" data-i18n="audience.visiting.title">See Almaty the way locals actually live it, not the way a guidebook does.</div>
         <ul class="audience-list">
-          <li data-i18n="audience.visiting.li1"><strong>A catalogue, not a wall of reviews.</strong> What's on, where, and what it actually takes to join.</li>
-          <li data-i18n="audience.visiting.li2"><strong>Show up to something real.</strong> We're connecting you to the group hikes and club events run by people who already know the city.</li>
+          <li data-i18n="audience.visiting.li1"><strong>A catalogue, not a wall of reviews.</strong> What's on, where, and what it takes to join.</li>
+          <li data-i18n="audience.visiting.li2"><strong>Show up to something real.</strong> Group hikes and club events run by people who know the city.</li>
           <li data-i18n="audience.visiting.li3"><strong>Leave with more than photos.</strong> A completed manifest, and the perks that came with it.</li>
         </ul>
       </div>
@@ -494,30 +493,30 @@
       "stats.rare": "rare finds tracked",
       "stats.perks": "local perks we're lining up",
       "thesis.h2": "We're building this to get people outside.",
-      "thesis.p": "Not another fitness-tracking app, not a loyalty scheme — just an easier reason to leave the house. Log the hike, the race, the walk you actually did, and watch it add up into something worth showing up for again.",
+      "thesis.p": "Not another fitness-tracking app, not a loyalty scheme — just an easier reason to leave the house. Log what you actually did, and watch it add up into something worth doing again.",
       "pillars.title": "What we're building",
       "pillars.kicker": "Four parts, one manifest",
       "pillar1.title": "Explore",
-      "pillar1.desc": "Trails we've already mapped around Almaty, plus the races, club rides and events happening around the city — catalogued in one place, tagged by what it actually takes to show up.",
+      "pillar1.desc": "Trails we've mapped around Almaty, plus the races and club rides happening around the city — all in one place.",
       "pillar2.title": "Manifest",
-      "pillar2.desc": "Log everything you complete — a hike, a race, a group ride. Your personal manifest fills in, rare finds get flagged, and badges unlock as you go.",
+      "pillar2.desc": "Log every hike, race or ride. Your manifest fills in, rare finds get flagged, badges unlock.",
       "pillar3.title": "Gather",
-      "pillar3.desc": "The group hikes, races and club rides already happening around Almaty — we're building the bridge to bring them into one place, so showing up together gets easier.",
+      "pillar3.desc": "Group hikes, races and club rides already happening around Almaty — we're bringing them into one place.",
       "pillar4.title": "Earn",
-      "pillar4.desc": "Show up enough and we want the city to start paying you back — real perks at local cafés and shops, not points that vanish. We're bringing partners on board now.",
+      "pillar4.desc": "Show up enough and we want the city to pay you back — real perks at local cafés and shops, not points that vanish.",
       "pillar4.chip1": "Local cafés",
       "pillar4.chip2": "Gear shops",
       "audience.title": "Built for two kinds of explorer",
       "audience.kicker": "Same manifest, different reasons",
       "audience.local.kicker": "If you live here",
       "audience.local.title": "Turn your weekends into something worth remembering.",
-      "audience.local.li1": "<strong>Stop losing plans to a group chat.</strong> Every hike, race or ride you do joins a manifest that's actually yours.",
-      "audience.local.li2": "<strong>Find your people.</strong> Rare finds and full-category badges keep pulling you toward the next thing worth showing up for — and the crowd that shows up with you.",
-      "audience.local.li3": "<strong>Get something back locally.</strong> We're setting up real perks at cafés and shops near wherever you end up — not points that expire into nothing.",
+      "audience.local.li1": "<strong>Stop losing plans to a group chat.</strong> Every hike, race or ride joins a manifest that's actually yours.",
+      "audience.local.li2": "<strong>Find your people.</strong> Badges and rare finds keep pulling you toward the next thing worth showing up for.",
+      "audience.local.li3": "<strong>Get something back locally.</strong> We're setting up real perks at local cafés and shops — not points that expire into nothing.",
       "audience.visiting.kicker": "If you're just passing through",
       "audience.visiting.title": "See Almaty the way locals actually live it, not the way a guidebook does.",
-      "audience.visiting.li1": "<strong>A catalogue, not a wall of reviews.</strong> What's on, where, and what it actually takes to join.",
-      "audience.visiting.li2": "<strong>Show up to something real.</strong> We're connecting you to the group hikes and club events run by people who already know the city.",
+      "audience.visiting.li1": "<strong>A catalogue, not a wall of reviews.</strong> What's on, where, and what it takes to join.",
+      "audience.visiting.li2": "<strong>Show up to something real.</strong> Group hikes and club events run by people who know the city.",
       "audience.visiting.li3": "<strong>Leave with more than photos.</strong> A completed manifest, and the perks that came with it.",
       "roadmap.title": "Almaty first",
       "roadmap.kicker": "Then the rest of Kazakhstan",
@@ -569,17 +568,17 @@
       "stats.rare": "редких находок",
       "stats.perks": "локальных бонусов в разработке",
       "thesis.h2": "Мы делаем это, чтобы люди чаще выходили на улицу.",
-      "thesis.p": "Не очередное приложение для трекинга, не программа лояльности — просто более простой повод выйти из дома. Фиксируйте поход, забег, прогулку, которую вы действительно совершили, и смотрите, как это складывается в то, ради чего снова хочется выходить.",
+      "thesis.p": "Не очередное приложение для трекинга, не программа лояльности — просто более простой повод выйти из дома. Фиксируйте то, что вы реально сделали, и смотрите, как это складывается в то, что снова хочется делать.",
       "pillars.title": "Что мы создаём",
       "pillars.kicker": "Четыре части, один манифест",
       "pillar1.title": "Исследуй",
-      "pillar1.desc": "Тропы, которые мы уже нанесли на карту вокруг Алматы, плюс забеги, клубные заезды и события, которые происходят в городе, — всё в одном месте, с пометкой, что нужно, чтобы туда попасть.",
+      "pillar1.desc": "Тропы, которые мы нанесли на карту вокруг Алматы, плюс забеги и клубные заезды, которые проходят в городе, — всё в одном месте.",
       "pillar2.title": "Манифест",
-      "pillar2.desc": "Фиксируйте всё, что завершили, — поход, забег, групповую поездку. Ваш личный манифест заполняется, редкие находки отмечаются, а значки открываются по ходу дела.",
+      "pillar2.desc": "Фиксируйте каждый поход, забег или заезд. Манифест заполняется, редкие находки отмечаются, значки открываются.",
       "pillar3.title": "Встречи",
-      "pillar3.desc": "Групповые походы, забеги и заезды, которые уже проходят в Алматы, — мы выстраиваем мост, чтобы собрать их в одном месте и сделать встречи проще.",
+      "pillar3.desc": "Групповые походы, забеги и заезды, которые уже проходят в Алматы, — мы собираем их в одном месте.",
       "pillar4.title": "Зарабатывай",
-      "pillar4.desc": "Показывайтесь достаточно часто — и мы хотим, чтобы город начал отвечать взаимностью: реальные бонусы в местных кафе и магазинах, а не баллы, которые сгорают. Сейчас мы подключаем партнёров.",
+      "pillar4.desc": "Показывайтесь достаточно часто — и мы хотим, чтобы город отвечал взаимностью: реальные бонусы в местных кафе и магазинах, а не баллы, которые сгорают.",
       "pillar4.chip1": "Местные кафе",
       "pillar4.chip2": "Магазины снаряжения",
       "audience.title": "Создано для двух типов исследователей",
@@ -587,12 +586,12 @@
       "audience.local.kicker": "Если вы здесь живёте",
       "audience.local.title": "Превратите свои выходные в то, что стоит запомнить.",
       "audience.local.li1": "<strong>Хватит терять планы в чатах.</strong> Каждый поход, забег или заезд попадает в манифест, который принадлежит только вам.",
-      "audience.local.li2": "<strong>Найдите своих людей.</strong> Редкие находки и значки за полные категории тянут вас к следующему поводу выйти из дома — и к компании, которая идёт вместе с вами.",
-      "audience.local.li3": "<strong>Получайте что-то взамен на месте.</strong> Мы настраиваем реальные бонусы в кафе и магазинах рядом с тем местом, куда вы попали, — а не баллы, которые сгорают в никуда.",
+      "audience.local.li2": "<strong>Найдите своих людей.</strong> Значки и редкие находки тянут вас к следующему поводу выйти из дома.",
+      "audience.local.li3": "<strong>Получайте что-то взамен на месте.</strong> Мы настраиваем реальные бонусы в местных кафе и магазинах — а не баллы, которые сгорают в никуда.",
       "audience.visiting.kicker": "Если вы просто проездом",
       "audience.visiting.title": "Увидьте Алматы такой, какой её видят местные, а не путеводитель.",
       "audience.visiting.li1": "<strong>Каталог, а не стена отзывов.</strong> Что происходит, где и что нужно, чтобы присоединиться.",
-      "audience.visiting.li2": "<strong>Приходите на что-то настоящее.</strong> Мы соединяем вас с групповыми походами и клубными событиями, которые проводят люди, уже знающие город.",
+      "audience.visiting.li2": "<strong>Приходите на что-то настоящее.</strong> Групповые походы и клубные события от людей, которые знают город.",
       "audience.visiting.li3": "<strong>Уезжайте не только с фотографиями.</strong> С заполненным манифестом и бонусами, которые к нему прилагаются.",
       "roadmap.title": "Сначала Алматы",
       "roadmap.kicker": "Затем весь остальной Казахстан",
@@ -644,17 +643,17 @@
       "stats.rare": "сирек олжа",
       "stats.perks": "дайындалып жатқан бонус",
       "thesis.h2": "Біз мұны адамдарды сыртқа шығару үшін жасап жатырмыз.",
-      "thesis.p": "Тағы бір фитнес-трекер емес, адалдық бағдарламасы да емес — үйден шығуға қарапайым себеп. Шын мәнінде жасаған жорығыңызды, жарысыңызды, серуеніңізді жазыңыз да, оның қайтадан шығуға тұрарлық нәрсеге айналғанын көріңіз.",
+      "thesis.p": "Тағы бір фитнес-трекер емес, адалдық бағдарламасы да емес — үйден шығуға қарапайым себеп. Шын мәнінде не істегеніңізді жазыңыз да, оның қайтадан жасағыңыз келетін нәрсеге айналғанын көріңіз.",
       "pillars.title": "Біз не жасап жатырмыз",
       "pillars.kicker": "Төрт бөлік, бір манифест",
       "pillar1.title": "Зертте",
-      "pillar1.desc": "Алматы айналасында біз қазірдің өзінде түсірген жолдар, сонымен қатар қалада өтіп жатқан жарыстар, клубтық серуендер мен іс-шаралар — бәрі бір жерде, барар алдында не керек екені белгіленген.",
+      "pillar1.desc": "Алматы айналасында біз түсірген жолдар, сонымен қатар қалада өтіп жатқан жарыстар мен клубтық серуендер — бәрі бір жерде.",
       "pillar2.title": "Манифест",
-      "pillar2.desc": "Аяқтаған нәрсеңіздің бәрін жазыңыз — жорық, жарыс, топтық серуен. Жеке манифестіңіз толады, сирек олжалар белгіленеді, белгілер жол бойы ашылады.",
+      "pillar2.desc": "Әрбір жорықты, жарысты немесе серуенді жазыңыз. Манифест толады, сирек олжалар белгіленеді, белгілер ашылады.",
       "pillar3.title": "Жиын",
-      "pillar3.desc": "Алматы айналасында қазірдің өзінде өтіп жатқан топтық жорықтар, жарыстар мен клубтық серуендер — біз оларды бір жерге жинайтын көпір құрып жатырмыз, бірге баруды жеңілдету үшін.",
+      "pillar3.desc": "Алматы айналасында қазірдің өзінде өтіп жатқан топтық жорықтар, жарыстар мен клубтық серуендер — біз оларды бір жерге жинап жатырмыз.",
       "pillar4.title": "Ұтып ал",
-      "pillar4.desc": "Жеткілікті жиі барыңыз — біз қаланың сізге жауап қайтаруын қалаймыз: жергілікті кафе мен дүкендердегі нақты бонустар, жоғалып кететін ұпай емес. Қазір серіктестерді қосып жатырмыз.",
+      "pillar4.desc": "Жеткілікті жиі барыңыз — біз қаланың сізге жауап қайтаруын қалаймыз: жергілікті кафе мен дүкендердегі нақты бонустар, жоғалып кететін ұпай емес.",
       "pillar4.chip1": "Жергілікті кафелер",
       "pillar4.chip2": "Жабдық дүкендері",
       "audience.title": "Екі түрлі зерттеушіге арналған",
@@ -662,12 +661,12 @@
       "audience.local.kicker": "Егер сіз осында тұрсаңыз",
       "audience.local.title": "Демалыс күндеріңізді есте қаларлық нәрсеге айналдырыңыз.",
       "audience.local.li1": "<strong>Жоспарларды топтық чатта жоғалтуды қойыңыз.</strong> Жасаған әрбір жорық, жарыс немесе серуен өзіңізге тиесілі манифеске қосылады.",
-      "audience.local.li2": "<strong>Өз адамдарыңызды табыңыз.</strong> Сирек олжалар мен толық санат белгілері сізді келесі барар жерге және сізбен бірге келетін топқа тартып отырады.",
-      "audience.local.li3": "<strong>Жергілікті жерден бірдеңе алыңыз.</strong> Барған жеріңіздегі кафе мен дүкендерде нақты бонустар орнатып жатырмыз — ешқашан жоқ болып кетпейтін ұпай емес.",
+      "audience.local.li2": "<strong>Өз адамдарыңызды табыңыз.</strong> Белгілер мен сирек олжалар сізді келесі барар жерге тартып отырады.",
+      "audience.local.li3": "<strong>Жергілікті жерден бірдеңе алыңыз.</strong> Жергілікті кафе мен дүкендерде нақты бонустар орнатып жатырмыз — ешқашан жоқ болып кетпейтін ұпай емес.",
       "audience.visiting.kicker": "Егер сіз жай ғана өтіп бара жатсаңыз",
       "audience.visiting.title": "Алматыны гид кітапша емес, жергілікті тұрғындар көретіндей көріңіз.",
       "audience.visiting.li1": "<strong>Пікірлер қабырғасы емес, каталог.</strong> Не өтіп жатыр, қайда, және қосылу үшін не керек.",
-      "audience.visiting.li2": "<strong>Нақты нәрсеге барыңыз.</strong> Қаланы жақсы білетін адамдар өткізетін топтық жорықтар мен клубтық іс-шаралармен сізді байланыстырып жатырмыз.",
+      "audience.visiting.li2": "<strong>Нақты нәрсеге барыңыз.</strong> Қаланы білетін адамдар өткізетін топтық жорықтар мен клубтық іс-шаралар.",
       "audience.visiting.li3": "<strong>Тек фотодан артық нәрсемен қайтыңыз.</strong> Толтырылған манифест және онымен бірге келген бонустармен.",
       "roadmap.title": "Алдымен Алматы",
       "roadmap.kicker": "Содан кейін бүкіл Қазақстан",
