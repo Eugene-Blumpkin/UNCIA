@@ -1,0 +1,562 @@
+<title>UNCIA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap">
+
+<style>
+  :root{
+    --void:#050505;
+    --panel:#0F0F0F;
+    --panel-2:#141414;
+    --line:#262626;
+    --line-2:#1a1a1a;
+    --paper:#EAEAEA;
+    --dim:#6E6E6E;
+    --dim-2:#4A4A4A;
+    --signal:#FFFFFF;
+    --font-display:'Archivo Black', Georgia, serif;
+    --font-mono:'Space Mono', 'Courier New', monospace;
+    --font-body:'Inter', system-ui, sans-serif;
+  }
+
+  *{ box-sizing:border-box; }
+  body{
+    margin:0;
+    background:var(--void);
+    color:var(--paper);
+    font-family:var(--font-body);
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background:var(--signal); color:var(--void); }
+  a{ color:inherit; }
+  button{ font-family:inherit; }
+  input, select, textarea{ color-scheme:dark; font-family:inherit; }
+  input::placeholder{ color:var(--dim); }
+  :focus-visible{ outline:1px solid var(--signal); outline-offset:2px; }
+  @media (prefers-reduced-motion: no-preference){
+    .row, .chip, .badge, .cta, .navlink{ transition:background-color .12s ease, color .12s ease, border-color .12s ease, opacity .12s ease; }
+  }
+
+  .wrap{ max-width:860px; margin:0 auto; padding:0 20px 80px; }
+
+  /* Header */
+  .header{
+    border-bottom:1px solid var(--line);
+    display:flex; align-items:flex-end; justify-content:space-between;
+    flex-wrap:wrap; gap:16px; padding:28px 0 20px;
+  }
+  .brand-name{ font-family:var(--font-display); font-size:26px; letter-spacing:.5px; }
+  .brand-tag{ font-family:var(--font-mono); font-size:11px; letter-spacing:.18em; color:var(--dim); margin-top:6px; text-transform:uppercase; }
+  .cta{
+    font-family:var(--font-mono); font-size:12px; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--void); background:var(--signal); border:none; padding:11px 18px; cursor:pointer;
+  }
+  .cta:hover{ opacity:.85; }
+
+  /* Hero */
+  .hero{
+    display:flex; align-items:center; gap:36px; padding:32px 0 8px;
+    border-bottom:1px solid var(--line); flex-wrap:wrap;
+  }
+  .hero-mark{ flex:1 1 260px; margin-left:-16px; max-width:380px; }
+  .hero-mark svg{ display:block; width:100%; height:auto; }
+  .hero-stats{ flex:1 1 220px; display:flex; flex-direction:column; }
+  .hero-stat{ padding:13px 0; border-top:1px solid var(--line); }
+  .hero-stat:first-child{ border-top:none; }
+  .hero-stat .num{ font-family:var(--font-mono); font-size:22px; font-weight:700; font-variant-numeric:tabular-nums; }
+  .hero-stat .label{ font-size:12px; color:var(--dim); margin-top:2px; }
+
+  /* Nav */
+  .nav{ display:flex; gap:26px; padding:16px 0; overflow-x:auto; }
+  .navlink{
+    background:none; border:none; white-space:nowrap;
+    border-bottom:2px solid transparent; color:var(--dim);
+    font-family:var(--font-mono); font-size:12px; letter-spacing:.12em; text-transform:uppercase;
+    padding-bottom:12px; cursor:pointer;
+  }
+  .navlink:hover{ color:var(--paper); }
+  .navlink.active{ color:var(--paper); border-bottom-color:var(--paper); }
+
+  .section-note{ font-size:12px; color:var(--dim); margin:2px 0 14px; line-height:1.5; }
+
+  /* Filter chips */
+  .chips{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:16px; }
+  .chip{
+    font-family:var(--font-mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+    background:none; border:1px solid var(--line); color:var(--dim); padding:7px 11px; cursor:pointer;
+  }
+  .chip:hover{ border-color:var(--dim); color:var(--paper); }
+  .chip.active{ background:var(--signal); border-color:var(--signal); color:var(--void); }
+
+  /* Rows (trails / events / perks) */
+  .row{
+    display:flex; align-items:center; gap:14px; padding:14px 4px;
+    border-top:1px solid var(--line);
+  }
+  .row-list{ border-bottom:1px solid var(--line); }
+  .row:hover{ background:var(--panel); }
+  .row-idx{ font-family:var(--font-mono); font-size:12px; color:var(--dim); width:22px; flex-shrink:0; font-variant-numeric:tabular-nums; }
+  .row-dot{ width:7px; height:7px; border-radius:50%; border:1px solid var(--paper); background:transparent; flex-shrink:0; }
+  .row-dot.on{ background:var(--paper); }
+  .row-main{ flex:1 1 auto; min-width:0; }
+  .row-name{ font-size:14px; font-weight:500; color:var(--dim); }
+  .row-name.on{ color:var(--paper); }
+  .tag-rare{ font-family:var(--font-mono); font-size:10px; color:var(--dim); margin-left:8px; letter-spacing:.08em; }
+  .row-sub{ font-size:12px; color:var(--dim); font-weight:400; }
+  .row-meta{
+    font-family:var(--font-mono); font-size:12px; color:var(--dim);
+    text-align:right; white-space:nowrap; flex-shrink:0;
+  }
+  .row-btn{
+    background:none; border:1px solid var(--line); color:var(--dim);
+    font-family:var(--font-mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+    padding:7px 12px; cursor:pointer; white-space:nowrap; flex-shrink:0;
+  }
+  .row-btn:hover:not(:disabled){ border-color:var(--paper); color:var(--paper); }
+  .row-btn.on{ border-color:var(--paper); color:var(--paper); }
+  .row-btn:disabled{ color:var(--dim-2); border-color:var(--line-2); cursor:not-allowed; }
+  .row-btn.plain{ border:none; padding:6px 0; }
+  .row-btn.plain:hover{ color:var(--paper); }
+
+  @media (max-width:560px){
+    .row{ flex-wrap:wrap; }
+    .row-meta{ width:100%; text-align:left; padding-left:36px; margin-top:-4px; }
+  }
+
+  /* Profile */
+  .stat-strip{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); margin-bottom:28px; }
+  .stat-strip div{ background:var(--void); padding:14px 12px; }
+  .stat-strip .num{ font-family:var(--font-mono); font-size:18px; font-weight:700; font-variant-numeric:tabular-nums; }
+  .stat-strip .label{ font-size:11px; color:var(--dim); margin-top:2px; }
+  @media (max-width:560px){ .stat-strip{ grid-template-columns:repeat(2,1fr); } }
+
+  .subhead{ font-family:var(--font-mono); font-size:11px; color:var(--dim); text-transform:uppercase; letter-spacing:.12em; margin:0 0 10px; }
+
+  .badge-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); margin-bottom:32px; }
+  .badge{ background:var(--void); padding:16px 14px; }
+  .badge-dot{ width:7px; height:7px; border-radius:50%; border:1px solid var(--paper); background:transparent; margin-bottom:10px; }
+  .badge-dot.on{ background:var(--paper); }
+  .badge-name{ font-size:13px; font-weight:600; color:var(--dim); }
+  .badge-name.on{ color:var(--paper); }
+  .badge-desc{ font-size:11px; color:var(--dim); margin-top:4px; line-height:1.4; }
+  @media (max-width:560px){ .badge-grid{ grid-template-columns:repeat(2,1fr); } }
+
+  .empty{ font-size:13px; color:var(--dim); padding:20px 4px; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+
+  /* Modal */
+  .modal-backdrop{
+    position:fixed; inset:0; background:rgba(0,0,0,.75);
+    display:flex; align-items:center; justify-content:center; padding:20px; z-index:50;
+  }
+  .modal{ background:var(--panel); border:1px solid var(--line); padding:24px; width:100%; max-width:380px; }
+  .modal-head{ display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; }
+  .modal-title{ font-family:var(--font-display); font-size:15px; }
+  .modal-close{ background:none; border:none; color:var(--dim); font-size:20px; cursor:pointer; line-height:1; padding:0; }
+  .modal-close:hover{ color:var(--paper); }
+  .field{ margin-bottom:14px; }
+  .field-label{ font-family:var(--font-mono); font-size:10px; color:var(--dim); margin-bottom:6px; text-transform:uppercase; letter-spacing:.1em; }
+  .field input, .field select{
+    width:100%; background:#000; border:1px solid var(--line); padding:9px 10px;
+    color:var(--paper); font-size:14px; outline:none;
+  }
+  .modal-submit{
+    margin-top:6px; width:100%; background:var(--signal); color:var(--void); border:none;
+    padding:13px 0; font-family:var(--font-mono); font-size:12px; letter-spacing:.1em;
+    text-transform:uppercase; cursor:pointer;
+  }
+  .modal-submit:hover{ opacity:.85; }
+
+  .footer{ margin-top:40px; padding-top:20px; border-top:1px solid var(--line); font-family:var(--font-mono); font-size:11px; color:var(--dim-2); letter-spacing:.04em; }
+</style>
+
+<div id="app"></div>
+
+<script>
+(function(){
+  "use strict";
+
+  var TRAILS = [
+    { id:"kokzhailau", name:"Kok-Zhailau Plateau", cat:"Meadow", km:10, gain:650 },
+    { id:"threebrothers", name:"Three Brothers Ridge", cat:"Peak", km:14, gain:900 },
+    { id:"butakovka", name:"Butakovka Gorge & Falls", cat:"Gorge", km:8, gain:400 },
+    { id:"bigalmatylake", name:"Big Almaty Lake", cat:"Lake", km:6, gain:300 },
+    { id:"bigalmatypeak", name:"Big Almaty Peak", cat:"Peak", km:12, gain:1100, rare:true },
+    { id:"medeu", name:"Medeu Rink Loop", cat:"Trail", km:4, gain:200 },
+    { id:"shymbulak", name:"Shymbulak Ridge", cat:"Peak", km:9, gain:700 },
+    { id:"furmanov", name:"Furmanov Peak", cat:"Peak", km:16, gain:1300, rare:true },
+    { id:"talgarpass", name:"Talgar Pass", cat:"Pass", km:18, gain:1200, rare:true },
+    { id:"kimasar", name:"Kimasar Gorge", cat:"Gorge", km:11, gain:550 },
+    { id:"kumbel", name:"Kumbel Peak", cat:"Peak", km:15, gain:1050 },
+    { id:"gorelnik", name:"Gorelnik Falls", cat:"Waterfall", km:13, gain:600 },
+    { id:"turgen", name:"Turgen Waterfalls", cat:"Waterfall", km:7, gain:350 },
+    { id:"kolsai", name:"Kolsai Lakes", cat:"Lake", km:20, gain:800, rare:true },
+    { id:"kaindy", name:"Kaindy Lake", cat:"Lake", km:5, gain:150 },
+    { id:"charyn", name:"Charyn Canyon", cat:"Canyon", km:3, gain:100 },
+    { id:"bogdanovich", name:"Bogdanovich Glacier", cat:"Glacier", km:22, gain:1400, rare:true },
+    { id:"assy", name:"Assy Plateau", cat:"Plateau", km:25, gain:900 }
+  ];
+
+  var EVENTS = [
+    { id:"e1", title:"Almaty Marathon", organizer:"Courage to be the First Fund", when:"Sep 28", type:"Road race" },
+    { id:"e2", title:"Kolsai Lakes group trek", organizer:"Trekking Club Kazakhstan", when:"Aug 23–24", type:"Guided hike" },
+    { id:"e3", title:"Butakovka Falls family hike", organizer:"AlmatyHiking", when:"Aug 22", type:"Guided hike" },
+    { id:"e4", title:"Saturday club ride", organizer:"Almaty Cycling Club", when:"Weekly · Sat", type:"Group ride" },
+    { id:"e5", title:"Free running Sunday", organizer:"Almaty Free Running Club", when:"Weekly · Sun", type:"Group run" }
+  ];
+
+  var PERKS = [
+    { id:"p1", biz:"Kok-Tobe Coffee House", offer:"15% off your order", unlock:"explored3" },
+    { id:"p2", biz:"Trekker's Table · Butakovka", offer:"Free tea after your hike", unlock:"butakovka" },
+    { id:"p3", biz:"SnowLine Gear Shop", offer:"10% off hiking gear", unlock:"explored5" },
+    { id:"p4", biz:"Almaty Pastry Co.", offer:"Free pastry", unlock:"rare1" },
+    { id:"p5", biz:"Trailhead Bike & Gear · Medeu", offer:"Free helmet rental, one day", unlock:"explored9" }
+  ];
+
+  var UNLOCK_LABEL = {
+    explored3:"Explore 3 trails", explored5:"Explore 5 trails", explored9:"Explore 9 trails",
+    butakovka:"Complete Butakovka Gorge", rare1:"Complete any rare peak"
+  };
+
+  var BADGES = [
+    { id:"b1", name:"First Catalogue", desc:"Log your first trail", test:function(s){ return s.log.length>=1; } },
+    { id:"b2", name:"Five Deep", desc:"Log five trail entries", test:function(s){ return s.log.length>=5; } },
+    { id:"b3", name:"Half the Manifest", desc:"Explore 9 of 18 trails", test:function(s){ return s.exploredIds.size>=9; } },
+    { id:"b4", name:"Full Manifest", desc:"Explore all 18 trails", test:function(s){ return s.exploredIds.size>=TRAILS.length; } },
+    { id:"b5", name:"Rare Sighting", desc:"Complete a rare peak", test:function(s){ return s.rareExplored.length>=1; } },
+    { id:"b6", name:"Apex Collector", desc:"Complete every rare peak", test:function(s){ return s.rareExplored.length>=s.rareTotal; } }
+  ];
+
+  var SEED_LOG = [
+    { id:"s1", date:"2025-05-10", trail:"kokzhailau", notes:"" },
+    { id:"s2", date:"2025-06-14", trail:"butakovka", notes:"" },
+    { id:"s3", date:"2025-07-02", trail:"medeu", notes:"" },
+    { id:"s4", date:"2025-07-20", trail:"bigalmatylake", notes:"" },
+    { id:"s5", date:"2026-01-05", trail:"turgen", notes:"" }
+  ];
+
+  var LOG_KEY = "unica:log:v1";
+  var INTERESTED_KEY = "unica:interested:v1";
+
+  function loadLog(){
+    try{
+      var raw = localStorage.getItem(LOG_KEY);
+      if(raw){ var parsed = JSON.parse(raw); if(Array.isArray(parsed)) return parsed; }
+    }catch(e){}
+    return SEED_LOG.slice();
+  }
+  function saveLog(log){ try{ localStorage.setItem(LOG_KEY, JSON.stringify(log)); }catch(e){} }
+  function loadInterested(){
+    try{
+      var raw = localStorage.getItem(INTERESTED_KEY);
+      if(raw){ var parsed = JSON.parse(raw); if(Array.isArray(parsed)) return new Set(parsed); }
+    }catch(e){}
+    return new Set();
+  }
+  function saveInterested(set){ try{ localStorage.setItem(INTERESTED_KEY, JSON.stringify(Array.from(set))); }catch(e){} }
+
+  var state = {
+    log: loadLog(),
+    interested: loadInterested(),
+    tab: "explore",
+    difficulty: "all",
+    showAdd: false
+  };
+
+  function trailById(id){ return TRAILS.filter(function(t){ return t.id===id; })[0]; }
+  function esc(str){
+    return String(str).replace(/[&<>"']/g, function(c){
+      return ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" })[c];
+    });
+  }
+  function difficulty(t){
+    var r = t.gain / t.km;
+    if(r < 40) return "Easy";
+    if(r <= 80) return "Moderate";
+    return "Strenuous";
+  }
+  function pad2(n){ return String(n).padStart(2,"0"); }
+
+  function computeStats(){
+    var exploredIds = new Set(state.log.map(function(l){ return l.trail; }));
+    var totalKm = 0, totalGain = 0;
+    state.log.forEach(function(l){
+      var t = trailById(l.trail);
+      if(t){ totalKm += t.km; totalGain += t.gain; }
+    });
+    var rareTotal = TRAILS.filter(function(t){ return t.rare; }).length;
+    var rareExplored = TRAILS.filter(function(t){ return t.rare && exploredIds.has(t.id); });
+    return { exploredIds:exploredIds, totalKm:totalKm, totalGain:totalGain, rareExplored:rareExplored, rareTotal:rareTotal, log:state.log };
+  }
+
+  function perkUnlocked(unlock, s){
+    if(unlock==="explored3") return s.exploredIds.size>=3;
+    if(unlock==="explored5") return s.exploredIds.size>=5;
+    if(unlock==="explored9") return s.exploredIds.size>=9;
+    if(unlock==="butakovka") return s.exploredIds.has("butakovka");
+    if(unlock==="rare1") return s.rareExplored.length>0;
+    return false;
+  }
+
+  var MARK_PATH = "M303,488 L316,489 L314,487 L307,485 Z M360,473 L370,477 L365,471 Z M245,469 L249,473 L251,472 Z M382,464 L383,468 L386,466 L390,466 L389,464 Z M380,465 L379,464 L374,467 Z M203,464 L202,466 L207,469 L208,467 Z M275,462 L277,463 L276,467 L273,466 Z M239,461 L238,462 L241,464 L243,468 L242,462 Z M412,462 L410,460 L404,461 Z M370,455 L368,454 L359,458 L356,462 L348,465 L345,469 L341,470 L354,472 L359,468 L371,464 L369,461 Z M389,451 L377,452 L373,454 L373,457 L376,458 Z M293,451 L289,452 L289,454 L292,456 Z M462,451 L467,453 L472,449 L464,449 Z M273,444 L274,447 L272,452 L275,453 L276,456 L267,462 L268,467 L266,469 L262,469 L260,467 L264,463 L264,459 L266,457 L268,449 L267,446 L269,444 Z M192,446 L195,449 L201,449 L197,454 L196,458 L205,458 L204,455 L206,453 L210,453 L209,449 L207,449 L206,451 L202,447 L198,448 L195,445 Z M284,443 L280,446 L280,450 L281,447 L285,444 Z M497,438 L491,440 L494,441 Z M463,437 L454,442 L450,442 L446,448 L451,448 L457,441 L462,440 Z M353,433 L352,435 L357,439 L357,437 Z M258,432 L256,440 L253,444 L252,453 L257,450 L261,452 L262,455 L259,459 L254,461 L251,459 L247,459 L247,463 L259,465 L257,468 L255,468 L254,472 L261,483 L265,483 L264,486 L266,489 L287,489 L288,485 L297,477 L294,473 L294,464 L293,462 L290,462 L282,454 L278,454 L274,450 L276,444 L279,443 L278,439 L285,437 L281,436 L277,439 L268,433 L268,436 L260,442 L257,440 L261,432 Z M245,423 L242,426 L237,426 L229,432 L225,432 L222,435 L228,435 L230,438 L230,441 L228,443 L224,443 L227,446 L226,449 L228,450 L228,453 L240,450 L242,446 L245,444 L245,440 L247,437 L245,440 L243,440 L243,442 L236,447 L234,446 L235,442 L239,439 L231,437 L234,432 L238,434 Z M537,405 L533,410 L534,412 Z M507,406 L504,405 L495,414 L495,416 L503,413 Z M415,398 L411,401 L411,404 L409,406 L404,404 L403,405 L405,407 L400,408 L406,411 L414,403 L413,400 Z M519,393 L516,393 L512,396 L515,396 Z M461,393 L455,397 L456,403 L458,402 Z M497,381 L492,383 L488,387 L477,388 L475,391 L468,393 L467,396 L471,397 L474,394 L479,393 L482,388 L490,388 Z M405,379 L408,384 L410,384 L408,380 Z M491,370 L489,368 L484,368 L479,374 L489,372 Z M405,370 L403,367 L401,367 L397,373 L390,375 L388,377 L386,375 L381,375 L378,377 L365,379 L361,382 L355,383 L351,381 L348,383 L345,389 L334,389 L334,394 L339,397 L346,397 L351,401 L354,407 L360,406 L364,397 L361,394 L364,391 L369,391 L371,394 L371,390 L374,385 L376,384 L378,386 L383,380 L387,384 L391,385 L399,383 L401,389 L403,386 L401,380 L402,376 L405,375 Z M408,365 L408,367 L423,382 L430,384 L428,387 L438,386 L434,384 L433,380 L423,371 L415,370 Z M390,365 L390,367 L392,368 L393,365 Z M474,364 L470,369 L475,366 Z M442,361 L444,357 L451,360 L447,364 Z M511,356 L507,356 L505,360 L507,360 Z M425,355 L430,354 L432,356 L432,359 L429,361 L425,357 Z M502,355 L495,355 L491,361 L494,361 L498,357 L501,358 Z M444,351 L445,354 L443,357 L441,357 L440,355 Z M504,349 L506,352 L510,353 L512,351 L508,348 L506,351 Z M379,352 L381,355 L385,354 L388,351 L390,354 L396,355 L397,347 L395,346 L395,348 L392,350 L389,344 L387,344 Z M501,346 L503,346 L506,343 L502,343 Z M501,340 L494,338 L491,342 L491,345 L497,344 Z M435,337 L436,340 L429,344 L428,342 L431,340 L431,338 L433,336 Z M439,336 L442,336 L444,339 L441,340 Z M365,332 L367,331 L369,333 L367,334 Z M545,314 L543,314 L541,317 L543,317 Z M452,313 L444,321 L440,319 L449,312 Z M341,313 L342,312 L344,315 L342,316 Z M272,313 L269,313 L267,315 L263,357 L261,361 L259,358 L258,347 L262,317 L258,334 L258,383 L256,385 L260,390 L260,395 L262,395 L263,397 L260,397 L259,404 L256,410 L265,404 L266,394 L262,390 L272,385 L268,387 L264,381 L267,339 Z M544,319 L540,320 L538,318 L538,313 L536,313 L534,309 L532,309 L528,313 L519,313 L510,319 L508,318 L509,314 L505,318 L507,320 L505,323 L509,327 L513,325 L516,321 L519,322 L524,317 L528,319 L524,323 L531,321 L534,318 L543,323 Z M433,308 L428,310 L427,312 L429,312 Z M487,307 L489,306 L490,309 L488,310 Z M472,304 L474,307 L471,309 L470,306 Z M479,302 L480,306 L477,308 L476,304 Z M503,300 L504,303 L501,306 L500,303 Z M263,301 L262,305 L265,308 L267,308 L265,301 Z M476,299 L479,298 L480,300 L478,302 Z M509,300 L510,296 L514,298 L511,301 Z M520,291 L523,290 L524,292 L521,293 Z M441,288 L435,294 L433,300 L438,299 L439,296 L437,293 L439,291 L442,291 Z M146,287 L140,287 L131,292 L121,293 L136,296 L143,294 Z M543,281 L544,284 L536,289 L535,288 L540,282 Z M559,285 L558,284 L557,287 L551,285 L545,278 L541,276 L541,272 L534,271 L527,279 L525,278 L523,280 L523,284 L520,287 L517,287 L514,291 L506,292 L501,295 L491,295 L489,293 L482,296 L473,295 L476,298 L465,301 L458,293 L458,290 L457,293 L453,290 L450,290 L450,303 L456,308 L454,310 L450,309 L449,311 L443,312 L439,319 L431,322 L421,321 L406,325 L395,325 L390,328 L375,327 L373,329 L369,328 L341,334 L345,336 L357,335 L364,338 L365,344 L363,346 L363,349 L365,349 L371,333 L375,330 L380,332 L378,335 L381,335 L382,338 L389,335 L390,339 L395,333 L413,330 L418,333 L416,339 L419,343 L419,347 L430,366 L432,367 L429,363 L431,361 L440,365 L443,364 L445,366 L443,370 L440,370 L440,372 L442,373 L439,379 L440,383 L441,379 L444,378 L447,373 L450,371 L455,372 L461,369 L464,362 L459,361 L456,355 L451,355 L444,348 L445,345 L449,346 L457,337 L462,339 L464,336 L468,338 L475,335 L471,334 L470,332 L478,324 L481,324 L481,327 L479,328 L480,330 L487,323 L487,330 L482,331 L479,337 L474,342 L478,342 L481,337 L485,336 L494,325 L500,322 L500,320 L497,318 L497,323 L488,320 L486,322 L483,318 L483,316 L488,312 L494,313 L498,311 L495,309 L497,305 L502,308 L503,313 L507,309 L505,307 L507,305 L510,305 L514,298 L518,299 L522,297 L527,297 L534,303 L535,306 L538,307 L539,302 L541,300 L548,298 L554,293 L548,295 L547,292 L553,288 L555,291 L557,290 L557,287 Z M543,267 L543,269 L560,270 L557,268 L552,269 Z M247,262 L244,266 L255,281 L260,291 L270,300 L276,301 L278,291 L277,290 L276,293 L274,290 L272,290 L269,294 L267,294 L262,288 Z M133,255 L123,260 L128,266 L136,261 L136,258 Z M151,251 L144,252 L142,250 L145,259 L139,265 L142,271 L137,275 L140,277 L140,280 L138,282 L144,279 L149,272 L154,254 Z M512,242 L514,245 L511,247 L509,245 Z M618,242 L600,259 L587,265 L575,268 L594,263 L599,259 L606,257 L611,250 L618,244 Z M108,240 L108,246 L102,252 L101,257 L103,261 L108,260 L110,262 L110,272 L113,275 L117,284 L115,280 L115,274 L118,270 L124,269 L124,267 L120,265 L109,249 Z M140,232 L143,229 L145,230 L143,233 Z M232,228 L237,226 L240,229 L237,230 Z M175,223 L180,222 L181,226 L178,227 Z M191,221 L193,223 L192,225 L189,223 Z M200,221 L201,220 L203,223 L202,224 Z M291,216 L291,218 L295,220 L293,216 Z M224,211 L227,213 L228,210 Z M219,210 L217,209 L219,212 L216,214 L210,213 L211,214 L208,217 L204,217 L202,215 L200,218 L190,217 L188,213 L186,213 L175,218 L167,224 L162,220 L163,213 L161,210 L138,212 L124,219 L117,226 L132,227 L139,232 L139,234 L135,236 L133,233 L131,233 L128,237 L125,234 L123,234 L118,237 L113,231 L115,228 L113,228 L112,242 L115,245 L115,248 L119,249 L139,238 L155,236 L155,231 L157,229 L160,229 L165,232 L165,226 L169,229 L173,227 L181,233 L184,229 L190,226 L217,226 L220,224 L218,222 L221,219 L218,218 Z M312,201 L314,200 L315,202 L313,203 Z M523,198 L525,200 L522,202 L521,200 Z M346,190 L350,197 L351,196 L349,191 Z M275,177 L284,186 L280,180 Z M247,170 L248,174 L242,187 L241,182 L243,179 L243,175 Z M305,191 L305,193 L297,199 L295,199 L290,194 L294,202 L287,208 L285,208 L269,189 L269,191 L282,208 L282,211 L279,214 L273,216 L262,200 L271,216 L268,220 L262,221 L255,210 L260,220 L258,223 L252,224 L246,222 L242,218 L246,216 L246,207 L254,194 L264,184 L278,165 L287,170 L297,180 Z M453,158 L453,161 L458,168 L468,170 L479,178 L461,162 Z M435,150 L438,156 L443,157 L451,163 L451,161 L442,152 L440,153 Z M324,148 L341,166 L347,169 L358,182 L351,170 L342,164 Z M462,147 L486,172 L495,184 L507,189 L513,195 L513,201 L516,206 L515,210 L526,231 L526,234 L523,235 L517,219 L521,236 L518,239 L512,238 L503,241 L503,244 L500,248 L492,250 L486,255 L481,254 L480,256 L483,257 L488,254 L491,257 L494,255 L499,256 L502,252 L503,253 L505,251 L510,251 L514,256 L518,252 L517,244 L521,240 L526,239 L528,234 L524,227 L524,217 L522,215 L527,211 L527,209 L525,209 L523,206 L526,203 L528,207 L529,206 L530,187 L526,186 L521,196 L516,194 L512,186 L506,181 L500,170 L496,170 L500,174 L496,179 L494,179 Z M366,146 L369,150 L372,161 L370,172 L373,164 L373,157 Z M297,148 L315,158 L334,177 L331,177 L336,182 L336,178 L344,186 L338,176 L332,173 L303,149 L305,145 L304,144 L304,146 L301,149 Z M306,139 L322,147 L314,141 L314,136 L309,139 Z M369,135 L376,143 L377,142 Z M314,131 L322,132 L335,139 L362,166 L365,173 L365,177 L370,175 L365,173 L365,170 L357,157 L335,138 L325,133 L322,129 Z M636,122 L638,135 L635,137 L639,141 L638,177 L636,182 L636,195 L630,218 L619,240 L621,240 L625,230 L629,226 L628,224 L630,222 L633,211 L637,207 L634,204 L637,203 L638,188 L640,186 L637,182 L640,181 L640,167 L643,163 L640,162 L638,159 L642,158 L640,142 L643,139 L637,136 L641,134 L637,128 Z M324,119 L325,122 L321,124 L319,121 L321,119 Z M353,112 L364,117 L381,130 L374,123 L365,117 Z M334,110 L335,111 L332,113 L331,112 Z M343,100 L346,99 L348,102 L345,104 Z M622,92 L627,98 L630,110 L632,112 L634,111 L634,109 L631,107 L627,100 L627,92 Z M475,86 L470,89 L450,109 L453,109 L459,101 Z M376,79 L379,84 L373,87 L371,85 L371,81 L373,79 Z M390,71 L393,71 L395,73 L395,77 L393,79 L389,79 L387,77 Z M452,57 L447,58 L441,65 L447,62 Z M510,55 L511,57 L517,59 L516,55 Z M430,45 L431,50 L428,53 L428,56 L431,59 L431,63 L429,65 L425,65 L423,63 L425,58 L424,56 L417,55 L410,51 L409,54 L411,57 L408,60 L408,63 L412,65 L412,70 L409,72 L405,71 L406,63 L393,59 L388,60 L390,65 L389,72 L381,70 L376,67 L372,67 L370,69 L373,77 L372,80 L356,77 L353,80 L357,88 L360,88 L362,91 L360,95 L357,95 L356,91 L352,89 L341,89 L338,92 L338,94 L341,97 L340,100 L326,101 L329,107 L328,110 L326,111 L318,108 L316,109 L319,117 L317,120 L315,120 L313,123 L310,115 L309,116 L309,127 L306,132 L302,129 L302,121 L301,119 L299,119 L299,138 L297,140 L294,138 L293,129 L291,127 L292,144 L289,148 L287,146 L284,133 L284,153 L282,156 L278,151 L276,141 L277,153 L275,155 L271,154 L269,150 L264,152 L257,151 L248,156 L238,168 L236,175 L236,189 L237,194 L239,196 L231,210 L237,208 L239,210 L239,216 L235,219 L232,225 L233,233 L241,233 L244,230 L252,228 L267,227 L271,223 L289,215 L297,208 L296,204 L294,203 L295,201 L299,200 L302,197 L307,197 L309,205 L315,215 L315,222 L327,260 L320,235 L317,219 L318,214 L315,209 L315,206 L317,204 L319,205 L323,214 L325,214 L327,227 L325,229 L323,225 L323,227 L327,232 L328,243 L335,264 L337,278 L343,286 L341,288 L342,291 L340,292 L341,303 L339,306 L339,317 L337,319 L329,319 L320,322 L311,322 L312,326 L308,329 L310,328 L312,331 L316,326 L318,326 L318,332 L320,334 L324,333 L336,321 L344,320 L346,316 L345,302 L347,301 L345,290 L352,284 L344,284 L344,281 L339,275 L333,253 L328,228 L328,212 L326,207 L326,191 L328,190 L333,194 L325,185 L324,181 L321,178 L316,179 L307,172 L313,178 L314,188 L312,191 L306,190 L285,167 L280,164 L280,159 L286,157 L297,164 L293,160 L285,156 L286,151 L291,149 L295,142 L300,141 L304,133 L308,134 L311,132 L311,127 L318,127 L325,123 L339,125 L346,129 L333,122 L329,122 L328,120 L331,117 L336,117 L337,112 L343,110 L350,111 L347,109 L351,102 L355,103 L358,99 L362,99 L363,95 L369,96 L370,93 L376,88 L379,91 L382,91 L389,82 L393,81 L395,85 L399,83 L407,74 L409,75 L407,79 L408,80 L423,67 L425,68 L423,72 L429,70 L440,60 L439,51 Z M522,43 L516,46 L498,44 L498,47 L489,56 L485,56 L477,62 L424,87 L415,89 L413,91 L408,89 L406,91 L406,101 L409,99 L413,104 L419,107 L419,109 L414,115 L416,116 L419,113 L423,112 L425,117 L432,118 L434,120 L432,123 L429,124 L427,131 L424,129 L423,125 L416,121 L415,124 L417,128 L461,157 L465,158 L441,135 L437,127 L439,125 L444,129 L440,121 L447,114 L447,112 L438,120 L435,120 L428,114 L429,112 L426,108 L422,106 L422,97 L438,85 L463,73 L484,66 L496,59 L498,55 L504,55 L508,50 L515,46 L521,45 Z M491,45 L487,47 L482,46 L480,44 L481,39 L481,41 L477,45 L473,41 L469,45 L449,41 L446,43 L446,48 L449,51 L458,51 L462,54 L472,54 L478,56 L485,54 L486,49 Z M560,36 L560,38 L579,47 L596,61 L601,68 L613,78 L620,90 L623,89 L614,79 L612,72 L608,73 L607,68 L596,59 L596,56 L591,56 L590,52 L581,47 L577,42 L573,43 L569,38 Z M504,33 L499,34 L499,36 L504,35 Z M541,32 L544,35 L555,37 L548,33 L551,31 Z M531,31 L533,29 L536,30 L535,33 L532,33 Z M523,31 L519,34 L517,32 L518,30 L516,30 L511,33 L508,32 L507,35 L517,35 L523,33 Z M538,29 L532,28 L526,30 L525,32 L528,34 L537,34 Z";
+
+  function markSVG(){
+    return '<svg viewBox="0 0 736 490" role="img" aria-label="UNCIA skeleton mark"><path d="'+MARK_PATH+'" fill="var(--paper)" fill-rule="evenodd"/></svg>';
+  }
+
+  function renderHeader(){
+    return (
+      '<div class="header">' +
+        '<div>' +
+          '<div class="brand-name">UNCIA</div>' +
+          '<div class="brand-tag">Field manifest &middot; Almaty, KZ</div>' +
+        '</div>' +
+        '<button class="cta" data-action="open-add">+ Log a trail</button>' +
+      '</div>'
+    );
+  }
+
+  function renderHero(s){
+    var rows = [
+      [pad2(s.exploredIds.size) + " / " + TRAILS.length, "trails catalogued"],
+      [s.totalKm + "km", "ground covered"],
+      [s.totalGain.toLocaleString() + "m", "climbed"],
+      [String(s.rareExplored.length), "rare catch" + (s.rareExplored.length!==1 ? "es" : "")]
+    ];
+    var statsHtml = rows.map(function(r){
+      return '<div class="hero-stat"><div class="num">'+esc(r[0])+'</div><div class="label">'+esc(r[1])+'</div></div>';
+    }).join("");
+    return (
+      '<div class="hero">' +
+        '<div class="hero-mark">'+markSVG()+'</div>' +
+        '<div class="hero-stats">'+statsHtml+'</div>' +
+      '</div>'
+    );
+  }
+
+  function renderNav(){
+    var tabs = [["explore","Explore"], ["events","Events"], ["perks","Perks"], ["profile","Profile"]];
+    return '<div class="nav">' + tabs.map(function(t){
+      return '<button class="navlink'+(state.tab===t[0]?' active':'')+'" data-action="tab" data-tab="'+t[0]+'">'+t[1]+'</button>';
+    }).join("") + '</div>';
+  }
+
+  function renderExplore(s){
+    var diffs = ["all","Easy","Moderate","Strenuous"];
+    var chips = diffs.map(function(d){
+      var label = d==="all" ? "All" : d;
+      return '<button class="chip'+(state.difficulty===d?' active':'')+'" data-action="filter-difficulty" data-value="'+d+'">'+esc(label)+'</button>';
+    }).join("");
+
+    var filtered = TRAILS.filter(function(t){ return state.difficulty==="all" || difficulty(t)===state.difficulty; });
+
+    var rowsHtml = filtered.map(function(t, i){
+      var got = s.exploredIds.has(t.id);
+      var rareTag = t.rare ? '<span class="tag-rare">RARE</span>' : '';
+      return (
+        '<div class="row">' +
+          '<span class="row-idx">'+pad2(i+1)+'</span>' +
+          '<span class="row-dot'+(got?' on':'')+'"></span>' +
+          '<span class="row-main"><span class="row-name'+(got?' on':'')+'">'+esc(t.name)+rareTag+'</span></span>' +
+          '<span class="row-meta">'+esc(t.cat)+' &middot; '+t.km+'km &middot; +'+t.gain+'m &middot; '+difficulty(t)+'</span>' +
+        '</div>'
+      );
+    }).join("");
+
+    if(!filtered.length){
+      rowsHtml = '<div class="empty">No trails at this difficulty.</div>';
+    }
+
+    return (
+      '<div class="chips">'+chips+'</div>' +
+      '<div class="row-list">'+rowsHtml+'</div>'
+    );
+  }
+
+  function renderEvents(){
+    var rowsHtml = EVENTS.map(function(e, i){
+      var interested = state.interested.has(e.id);
+      return (
+        '<div class="row">' +
+          '<span class="row-idx">'+pad2(i+1)+'</span>' +
+          '<span class="row-main"><span class="row-name on">'+esc(e.title)+'</span><span class="row-sub"> &middot; '+esc(e.organizer)+'</span></span>' +
+          '<span class="row-meta">'+esc(e.type)+' &middot; '+esc(e.when)+'</span>' +
+          '<button class="row-btn'+(interested?' on':'')+'" data-action="toggle-interested" data-id="'+e.id+'">'+(interested?"Interested ✓":"Interested")+'</button>' +
+        '</div>'
+      );
+    }).join("");
+
+    return (
+      '<div class="section-note">Curated from local clubs and operators &mdash; not a live feed in this demo.</div>' +
+      '<div class="row-list">'+rowsHtml+'</div>'
+    );
+  }
+
+  function renderPerks(s){
+    var rowsHtml = PERKS.map(function(p){
+      var unlocked = perkUnlocked(p.unlock, s);
+      return (
+        '<div class="row">' +
+          '<span class="row-dot'+(unlocked?' on':'')+'"></span>' +
+          '<span class="row-main">' +
+            '<div class="row-name'+(unlocked?' on':'')+'" style="font-size:14px">'+esc(p.biz)+'</div>' +
+            '<div class="row-sub" style="margin-top:2px">'+esc(p.offer)+' &middot; '+(unlocked?"unlocked":esc(UNLOCK_LABEL[p.unlock]))+'</div>' +
+          '</span>' +
+          '<button class="row-btn'+(unlocked?'':'')+'" '+(unlocked?'':'disabled')+'>Redeem</button>' +
+        '</div>'
+      );
+    }).join("");
+
+    return (
+      '<div class="section-note">Concept mockup &mdash; redemption would run through a partner like Kaspi Pay, not a new payments system.</div>' +
+      '<div class="row-list">'+rowsHtml+'</div>'
+    );
+  }
+
+  function renderProfile(s){
+    var badgesHtml = BADGES.map(function(b){
+      var on = b.test(s);
+      return (
+        '<div class="badge">' +
+          '<div class="badge-dot'+(on?' on':'')+'"></div>' +
+          '<div class="badge-name'+(on?' on':'')+'">'+esc(b.name)+'</div>' +
+          '<div class="badge-desc">'+esc(b.desc)+'</div>' +
+        '</div>'
+      );
+    }).join("");
+
+    var sortedLog = state.log.slice().sort(function(a,b){ return a.date < b.date ? 1 : -1; });
+    var logHtml = sortedLog.map(function(l, i){
+      var t = trailById(l.trail);
+      return (
+        '<div class="row">' +
+          '<span class="row-meta" style="width:90px;text-align:left">'+esc(l.date)+'</span>' +
+          '<span class="row-main"><span class="row-name on" style="font-size:14px">'+esc(t?t.name:"Unknown trail")+'</span></span>' +
+          '<button class="row-btn plain" data-action="remove-log" data-id="'+l.id+'">Remove</button>' +
+        '</div>'
+      );
+    }).join("");
+    if(!sortedLog.length){
+      logHtml = '<div class="empty">No entries yet &mdash; log a trail to start your manifest.</div>';
+    }
+
+    return (
+      '<div class="stat-strip">' +
+        '<div><div class="num">'+pad2(s.exploredIds.size)+'/'+TRAILS.length+'</div><div class="label">catalogued</div></div>' +
+        '<div><div class="num">'+s.totalKm+'km</div><div class="label">covered</div></div>' +
+        '<div><div class="num">'+s.totalGain.toLocaleString()+'m</div><div class="label">climbed</div></div>' +
+        '<div><div class="num">'+BADGES.filter(function(b){ return b.test(s); }).length+'/'+BADGES.length+'</div><div class="label">badges</div></div>' +
+      '</div>' +
+      '<div class="subhead">Badges</div>' +
+      '<div class="badge-grid">'+badgesHtml+'</div>' +
+      '<div class="subhead">Activity log</div>' +
+      '<div class="row-list">'+logHtml+'</div>'
+    );
+  }
+
+  function renderModal(){
+    if(!state.showAdd) return "";
+    var options = TRAILS.map(function(t){ return '<option value="'+t.id+'">'+esc(t.name)+' &mdash; '+esc(t.cat)+'</option>'; }).join("");
+    return (
+      '<div class="modal-backdrop" data-action="close-add">' +
+        '<form class="modal" data-action="submit-add">' +
+          '<div class="modal-head">' +
+            '<div class="modal-title">Log a trail</div>' +
+            '<button type="button" class="modal-close" data-action="close-add">&times;</button>' +
+          '</div>' +
+          '<div class="field">' +
+            '<div class="field-label">Date</div>' +
+            '<input required type="date" name="date" id="f-date">' +
+          '</div>' +
+          '<div class="field">' +
+            '<div class="field-label">Trail or peak</div>' +
+            '<select name="trail" id="f-trail">'+options+'</select>' +
+          '</div>' +
+          '<div class="field">' +
+            '<div class="field-label">Notes (optional)</div>' +
+            '<input type="text" name="notes" id="f-notes" placeholder="e.g. with the Saturday club group">' +
+          '</div>' +
+          '<button type="submit" class="modal-submit">Add to log</button>' +
+        '</form>' +
+      '</div>'
+    );
+  }
+
+  function render(){
+    var s = computeStats();
+    var body = "";
+    if(state.tab==="explore") body = renderExplore(s);
+    else if(state.tab==="events") body = renderEvents();
+    else if(state.tab==="perks") body = renderPerks(s);
+    else if(state.tab==="profile") body = renderProfile(s);
+
+    var html = (
+      '<div class="wrap">' +
+        renderHeader() +
+        renderHero(s) +
+        renderNav() +
+        body +
+        '<div class="footer">Almaty first. Astana, Shymkent and the Altai next.</div>' +
+      '</div>' +
+      renderModal()
+    );
+
+    document.getElementById("app").innerHTML = html;
+
+    if(state.showAdd){
+      var dateEl = document.getElementById("f-date");
+      if(dateEl) dateEl.focus();
+    }
+  }
+
+  document.getElementById("app").addEventListener("click", function(e){
+    var el = e.target.closest("[data-action]");
+    if(!el) return;
+    var action = el.getAttribute("data-action");
+
+    if(action==="tab"){
+      state.tab = el.getAttribute("data-tab");
+      render();
+    } else if(action==="open-add"){
+      state.showAdd = true;
+      render();
+    } else if(action==="close-add"){
+      if(e.target !== el) return;
+      state.showAdd = false;
+      render();
+    } else if(action==="filter-difficulty"){
+      state.difficulty = el.getAttribute("data-value");
+      render();
+    } else if(action==="toggle-interested"){
+      var id = el.getAttribute("data-id");
+      if(state.interested.has(id)) state.interested.delete(id); else state.interested.add(id);
+      saveInterested(state.interested);
+      render();
+    } else if(action==="remove-log"){
+      var lid = el.getAttribute("data-id");
+      state.log = state.log.filter(function(l){ return l.id !== lid; });
+      saveLog(state.log);
+      render();
+    }
+  });
+
+  document.getElementById("app").addEventListener("submit", function(e){
+    var el = e.target.closest('[data-action="submit-add"]');
+    if(!el) return;
+    e.preventDefault();
+    var date = document.getElementById("f-date").value;
+    var trail = document.getElementById("f-trail").value;
+    var notes = document.getElementById("f-notes").value;
+    if(!date) return;
+    state.log = [{ id:"l"+Date.now(), date:date, trail:trail, notes:notes }].concat(state.log);
+    saveLog(state.log);
+    state.showAdd = false;
+    state.tab = "profile";
+    render();
+  });
+
+  document.addEventListener("keydown", function(e){
+    if(e.key==="Escape" && state.showAdd){ state.showAdd = false; render(); }
+  });
+
+  render();
+})();
+</script>
