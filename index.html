@@ -159,6 +159,53 @@
   }
   @media (max-width:720px){ .pillar-grid{ grid-template-columns:1fr; } }
 
+  /* ---------- demo ---------- */
+  .demo{ padding:104px 0; border-bottom:1px solid var(--line-2); }
+  .demo-grid{ display:grid; grid-template-columns:1fr 0.85fr; gap:64px; align-items:center; }
+  .demo-title{ font-family:var(--font-display); font-size:clamp(24px,3.4vw,36px); line-height:1.2; max-width:480px; overflow-wrap:break-word; word-break:break-word; }
+  .demo-text p{ font-size:15px; line-height:1.7; color:var(--dim); margin-top:20px; max-width:440px; }
+  .demo-caption{ font-family:var(--font-mono); font-size:11px; letter-spacing:.06em; color:var(--dim-2); margin-top:22px; }
+
+  .phone{ max-width:270px; margin:0 auto; }
+  .phone-frame{
+    border:1px solid var(--line); background:var(--panel); border-radius:26px; padding:10px;
+  }
+  .phone-screen{
+    background:var(--void); border:1px solid var(--line-2); border-radius:16px; overflow:hidden;
+  }
+  .phone-topbar{
+    display:flex; align-items:center; justify-content:space-between; gap:8px;
+    padding:12px 14px 10px; border-bottom:1px solid var(--line-2);
+  }
+  .phone-brand{ display:flex; align-items:center; gap:6px; }
+  .phone-mark{ width:14px; color:var(--paper); }
+  .phone-mark svg{ display:block; width:100%; height:auto; }
+  .phone-mark use{ fill:currentColor; }
+  .phone-brand-name{ font-family:var(--font-display); font-size:10px; letter-spacing:.03em; }
+  .phone-stat{ font-family:var(--font-mono); font-size:9px; color:var(--dim); }
+  .map-illustration{ display:block; width:100%; height:auto; background:var(--void); }
+  .map-contour{ fill:none; stroke:var(--line); stroke-width:1; opacity:.7; }
+  .map-route{ fill:none; stroke:var(--dim-2); stroke-width:1; stroke-dasharray:3 4; }
+  .map-city{ fill:var(--paper); }
+  .map-city-label{ font-family:'Space Mono',monospace; font-size:8px; letter-spacing:.06em; fill:var(--dim); }
+  .map-pin-ring{ fill:var(--void); stroke:var(--paper); stroke-width:1.4; }
+  .map-pin-ring.rare{ stroke-dasharray:2 2; }
+  .map-pin-num{ font-family:'Space Mono',monospace; font-size:7px; fill:var(--paper); text-anchor:middle; }
+  .map-pin-label{ font-family:'Space Mono',monospace; font-size:7px; letter-spacing:.02em; fill:var(--dim); }
+  .phone-navbar{
+    display:flex; justify-content:space-between; gap:4px;
+    padding:10px 14px; border-top:1px solid var(--line-2);
+  }
+  .phone-navbar span{ font-family:var(--font-mono); font-size:8px; letter-spacing:.04em; text-transform:uppercase; color:var(--dim-2); }
+  .phone-navbar span.on{ color:var(--paper); }
+
+  @media (max-width:780px){
+    .demo-grid{ grid-template-columns:1fr; gap:48px; }
+    .demo-text{ order:2; text-align:center; }
+    .demo-text p{ margin-left:auto; margin-right:auto; }
+    .phone{ order:1; }
+  }
+
   /* ---------- audience split ---------- */
   .audience{ padding:104px 0; border-bottom:1px solid var(--line-2); }
   .audience-grid{ display:grid; grid-template-columns:1fr 1fr; }
@@ -309,7 +356,7 @@
       <span class="topbar-name">UNCIA</span>
     </div>
     <div class="topbar-right">
-      <a class="topbar-link" data-i18n="topbar.live" href="https://claude.ai/code/artifact/1abe5f5e-fb01-4e5b-8c69-a32f681411d2" target="_blank" rel="noopener">Live catalogue ↗</a>
+      <a class="topbar-link" data-i18n="topbar.live" href="#demo">Demo</a>
       <div class="lang-switch" role="group" aria-label="Language">
         <button type="button" class="lang-btn active" data-lang="en">EN</button>
         <button type="button" class="lang-btn" data-lang="ru">РУС</button>
@@ -333,7 +380,7 @@
       </p>
       <div class="hero-cta fade-up d4">
         <a class="btn solid" data-i18n="hero.ctaPrimary" href="#waitlist">Join the wishlist</a>
-        <a class="btn" data-i18n="hero.ctaSecondary" href="https://claude.ai/code/artifact/1abe5f5e-fb01-4e5b-8c69-a32f681411d2" target="_blank" rel="noopener">Open the live catalogue</a>
+        <a class="btn" data-i18n="hero.ctaSecondary" href="#demo">See the demo</a>
       </div>
     </div>
   </div>
@@ -399,6 +446,71 @@
         <div class="pillar-sample">
           <span class="pillar-chip" data-i18n="pillar4.chip1">Local cafés</span>
           <span class="pillar-chip" data-i18n="pillar4.chip2">Gear shops</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="demo" id="demo">
+  <div class="shell">
+    <div class="demo-grid">
+      <div class="demo-text">
+        <div class="section-kicker reveal" data-i18n="demo.kicker">Demo</div>
+        <div class="demo-title reveal d1" data-i18n="demo.title">A first look at the map.</div>
+        <p class="reveal d2" data-i18n="demo.body">Trails laid out the way you'd actually use them &mdash; tap a pin, see what it takes to get there, log it when you're done. This is a concept preview, not the finished build, but it's the direction we're headed.</p>
+        <div class="demo-caption reveal d3" data-i18n="demo.caption">Concept preview &mdash; the map view is next on our build list.</div>
+      </div>
+      <div class="phone reveal d1">
+        <div class="phone-frame">
+          <div class="phone-screen">
+            <div class="phone-topbar">
+              <div class="phone-brand">
+                <span class="mark phone-mark"><svg viewBox="0 0 736 490"><use href="#unciaMark"/></svg></span>
+                <span class="phone-brand-name">UNCIA</span>
+              </div>
+              <span class="phone-stat">05/18</span>
+            </div>
+            <svg class="map-illustration" viewBox="0 0 260 340" xmlns="http://www.w3.org/2000/svg">
+              <path class="map-contour" d="M0,60 Q65,40 130,62 T260,50"/>
+              <path class="map-contour" d="M0,150 Q75,128 150,152 T260,138"/>
+              <path class="map-contour" d="M0,240 Q85,218 165,242 T260,228"/>
+              <path class="map-route" d="M130,310 L140,265 L75,205 L175,165 L95,95"/>
+              <rect class="map-city" x="125" y="305" width="10" height="10" transform="rotate(45 130 310)"/>
+              <text class="map-city-label" x="130" y="330" text-anchor="middle">ALMATY</text>
+              <g>
+                <circle class="map-pin-ring" cx="140" cy="265" r="7"/>
+                <text class="map-pin-num" x="140" y="268">01</text>
+                <text class="map-pin-label" x="151" y="268">Medeu</text>
+              </g>
+              <g>
+                <circle class="map-pin-ring" cx="75" cy="205" r="7"/>
+                <text class="map-pin-num" x="75" y="208">02</text>
+                <text class="map-pin-label" x="86" y="208">Butakovka</text>
+              </g>
+              <g>
+                <circle class="map-pin-ring" cx="175" cy="165" r="7"/>
+                <text class="map-pin-num" x="175" y="168">03</text>
+                <text class="map-pin-label" x="186" y="168">Kok-Zhailau</text>
+              </g>
+              <g>
+                <circle class="map-pin-ring" cx="95" cy="95" r="7"/>
+                <text class="map-pin-num" x="95" y="98">04</text>
+                <text class="map-pin-label" x="106" y="98">Big Almaty Lake</text>
+              </g>
+              <g>
+                <circle class="map-pin-ring rare" cx="215" cy="40" r="7"/>
+                <text class="map-pin-num" x="215" y="43">05</text>
+                <text class="map-pin-label" x="203" y="26">Kolsai Lakes</text>
+              </g>
+            </svg>
+            <div class="phone-navbar">
+              <span class="on">Explore</span>
+              <span>Events</span>
+              <span>Perks</span>
+              <span>Profile</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -544,7 +656,7 @@
       <span class="mark footer-mark"><svg viewBox="0 0 736 490"><use href="#unciaMark"/></svg></span>
       <span class="footer-brand" data-i18n="footer.brand">UNCIA &middot; Field manifest, Almaty, KZ</span>
     </div>
-    <div class="footer-right"><a href="https://claude.ai/code/artifact/1abe5f5e-fb01-4e5b-8c69-a32f681411d2" target="_blank" rel="noopener" data-i18n="footer.linkOpen">Open the live catalogue ↗</a> &nbsp;&middot;&nbsp; <span data-i18n="footer.prototype">Prototype, not yet in stores</span></div>
+    <div class="footer-right"><a href="#demo" data-i18n="footer.linkOpen">See the demo</a> &nbsp;&middot;&nbsp; <span data-i18n="footer.prototype">Prototype, not yet in stores</span></div>
   </div>
 </footer>
 
@@ -554,13 +666,13 @@
 
   var I18N = {
     en: {
-      "topbar.live": "Live catalogue ↗",
+      "topbar.live": "Demo",
       "topbar.request": "Join the wishlist",
       "hero.eyebrow": "Field manifest · Almaty, Kazakhstan",
       "hero.h1": "Live it. Log it.<br>Level up.",
       "hero.sub": "UNCIA turns everything you do around Almaty — hikes, races, club rides, nights out, new places — into a running manifest of your life in the city. Show up to real events with real people, earn badges as your manifest fills in, and unlock perks at the places you go.",
       "hero.ctaPrimary": "Join the wishlist",
-      "hero.ctaSecondary": "Open the live catalogue",
+      "hero.ctaSecondary": "See the demo",
       "stats.events": "clubs & events we're mapping",
       "stats.trails": "trails & routes catalogued",
       "stats.rare": "rare finds tracked",
@@ -579,6 +691,10 @@
       "pillar4.desc": "Show up enough and we want the city to pay you back — real perks at local cafés and shops, not points that vanish.",
       "pillar4.chip1": "Local cafés",
       "pillar4.chip2": "Gear shops",
+      "demo.kicker": "Demo",
+      "demo.title": "A first look at the map.",
+      "demo.body": "Trails laid out the way you'd actually use them — tap a pin, see what it takes to get there, log it when you're done. This is a concept preview, not the finished build, but it's the direction we're headed.",
+      "demo.caption": "Concept preview — the map view is next on our build list.",
       "audience.title": "Built for two kinds of explorer",
       "audience.kicker": "Same manifest, different reasons",
       "audience.local.kicker": "If you live here",
@@ -625,17 +741,17 @@
       "suggest.note": "We read every suggestion — this goes straight to us.",
       "suggest.confirm": "Got it. Thanks for the suggestion.",
       "footer.brand": "UNCIA · Field manifest, Almaty, KZ",
-      "footer.linkOpen": "Open the live catalogue ↗",
+      "footer.linkOpen": "See the demo",
       "footer.prototype": "Prototype, not yet in stores"
     },
     ru: {
-      "topbar.live": "Живой каталог ↗",
+      "topbar.live": "Демо",
       "topbar.request": "В список ожидания",
       "hero.eyebrow": "Полевой манифест · Алматы, Казахстан",
       "hero.h1": "Живи. Пиши.<br>Качайся.",
       "hero.sub": "UNCIA превращает всё, что вы делаете в Алматы, — походы, забеги, клубные заезды, вечера, новые места — в постоянно растущий манифест вашей городской жизни. Приходите на настоящие события к настоящим людям, зарабатывайте значки по мере заполнения манифеста и получайте бонусы в местах, куда вы ходите.",
       "hero.ctaPrimary": "В список ожидания",
-      "hero.ctaSecondary": "Открыть живой каталог",
+      "hero.ctaSecondary": "Смотреть демо",
       "stats.events": "клубов и событий на карте",
       "stats.trails": "троп и маршрутов",
       "stats.rare": "редких находок",
@@ -654,6 +770,10 @@
       "pillar4.desc": "Показывайтесь достаточно часто — и мы хотим, чтобы город отвечал взаимностью: реальные бонусы в местных кафе и магазинах, а не баллы, которые сгорают.",
       "pillar4.chip1": "Местные кафе",
       "pillar4.chip2": "Магазины снаряжения",
+      "demo.kicker": "Демо",
+      "demo.title": "Первый взгляд на карту.",
+      "demo.body": "Тропы, разложенные так, как вы бы ими реально пользовались, — коснитесь метки, узнайте, что нужно, чтобы туда добраться, и отметьте, когда дойдёте. Это концепт-превью, а не готовый продукт, но именно в эту сторону мы движемся.",
+      "demo.caption": "Концепт-превью — карта следующая в списке разработки.",
       "audience.title": "Создано для двух типов исследователей",
       "audience.kicker": "Один манифест, разные причины",
       "audience.local.kicker": "Если вы здесь живёте",
@@ -700,17 +820,17 @@
       "suggest.note": "Мы читаем каждое предложение — оно приходит напрямую к нам.",
       "suggest.confirm": "Принято. Спасибо за предложение.",
       "footer.brand": "UNCIA · Полевой манифест, Алматы, КЗ",
-      "footer.linkOpen": "Открыть живой каталог ↗",
+      "footer.linkOpen": "Смотреть демо",
       "footer.prototype": "Прототип, пока не в магазинах"
     },
     kk: {
-      "topbar.live": "Тірі каталог ↗",
+      "topbar.live": "Демо",
       "topbar.request": "Күту тізіміне қосылу",
       "hero.eyebrow": "Дала манифесі · Алматы, Қазақстан",
       "hero.h1": "Өмір сүр. Белгіле.<br>Дамы.",
       "hero.sub": "UNCIA сіздің Алматыдағы барлық ісіңізді — жорықтар, жарыстар, клубтық серуендер, кештер, жаңа орындар — қала өміріңіздің үздіксіз толығып отыратын манифесіне айналдырады. Нақты адамдармен нақты іс-шараларға барыңыз, манифест толған сайын белгі жинаңыз және барған жерлеріңізде бонус ұтып алыңыз.",
       "hero.ctaPrimary": "Күту тізіміне қосылу",
-      "hero.ctaSecondary": "Тірі каталогты ашу",
+      "hero.ctaSecondary": "Демоны көру",
       "stats.events": "картадағы клуб пен іс-шара",
       "stats.trails": "жол мен бағыт",
       "stats.rare": "сирек олжа",
@@ -729,6 +849,10 @@
       "pillar4.desc": "Жеткілікті жиі барыңыз — біз қаланың сізге жауап қайтаруын қалаймыз: жергілікті кафе мен дүкендердегі нақты бонустар, жоғалып кететін ұпай емес.",
       "pillar4.chip1": "Жергілікті кафелер",
       "pillar4.chip2": "Жабдық дүкендері",
+      "demo.kicker": "Демо",
+      "demo.title": "Картаға алғашқы көзқарас.",
+      "demo.body": "Жолдар шын мәнінде қолданатындай етіп орналастырылған — белгіні басыңыз, ол жерге жету үшін не керек екенін көріңіз, жеткен соң белгілеп қойыңыз. Бұл концепт-превью, дайын өнім емес, бірақ біз дәл осы бағытта қозғалып жатырмыз.",
+      "demo.caption": "Концепт-превью — карта көрінісі құрылыс тізіміндегі келесі кезек.",
       "audience.title": "Екі түрлі зерттеушіге арналған",
       "audience.kicker": "Бір манифест, әртүрлі себеп",
       "audience.local.kicker": "Егер сіз осында тұрсаңыз",
@@ -775,7 +899,7 @@
       "suggest.note": "Біз әрбір ұсынысты оқимыз — ол тікелей бізге келеді.",
       "suggest.confirm": "Қабылданды. Ұсынысыңызға рахмет.",
       "footer.brand": "UNCIA · Дала манифесі, Алматы, ҚЗ",
-      "footer.linkOpen": "Тірі каталогты ашу ↗",
+      "footer.linkOpen": "Демоны көру",
       "footer.prototype": "Прототип, әлі дүкендерде жоқ"
     }
   };
