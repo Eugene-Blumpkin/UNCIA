@@ -277,20 +277,6 @@
   .pillar-grid.three{ grid-template-columns:repeat(3,1fr); }
   .btn.block{ margin-top:26px; }
 
-  /* work */
-  .work-card{ background:var(--void); padding:30px; transition:background-color .25s ease, transform .25s ease; display:flex; flex-direction:column; }
-  a.work-card:hover{ background:var(--panel); transform:translateY(-3px); }
-  .work-thumb{
-    aspect-ratio:16/9; border:1px solid var(--line); margin-bottom:22px;
-    display:flex; align-items:center; justify-content:center; color:var(--paper);
-  }
-  .work-thumb .mark{ width:42%; }
-  .work-card.empty .work-thumb{ border-style:dashed; color:var(--dim-2); font-family:var(--font-mono); font-size:13px; letter-spacing:.12em; text-transform:uppercase; }
-  .work-kicker{ font-family:var(--font-mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--dim); }
-  .work-title{ font-size:19px; font-weight:600; margin-top:10px; }
-  .work-desc{ font-size:14.5px; line-height:1.7; color:var(--dim); margin-top:10px; flex:1; }
-  .work-link{ font-family:var(--font-mono); font-size:11.5px; letter-spacing:.08em; text-transform:uppercase; margin-top:18px; color:var(--paper); }
-
   /* process */
   .step-num{ font-family:var(--font-mono); font-size:12px; color:var(--dim); width:28px; flex-shrink:0; }
   .step-text{ flex:1; font-size:15px; line-height:1.65; color:var(--dim); }
@@ -309,16 +295,12 @@
 
   @media (max-width:720px){
     .pillar-grid.three{ grid-template-columns:1fr; }
-    .work-card{ padding:24px 20px; }
   }
 
   @media (max-width:640px){
     .topbar-name{ font-size:15px; }
     .hero h1{ font-size:clamp(60px, 18vw, 80px); }
     .teaser{ padding-top:56px; padding-bottom:56px; }
-    .work-title{ font-size:24px; }
-    .work-desc{ font-size:17px; }
-    .work-kicker, .work-link{ font-size:12px; }
     .step-text{ font-size:17px; }
     .step-num{ font-size:13px; }
     .segmented.wrap button{ flex:1 1 45%; font-size:12.5px; }
@@ -343,9 +325,9 @@
     .thesis h2{ font-size:44px; max-width:900px; }
     .thesis p{ font-size:18px; max-width:700px; }
     .section-title{ font-size:36px; }
-    .pillar, .work-card{ padding:44px 38px; }
-    .pillar-title, .work-title{ font-size:22px; }
-    .pillar-desc, .work-desc, .step-text{ font-size:16px; }
+    .pillar{ padding:44px 38px; }
+    .pillar-title{ font-size:22px; }
+    .pillar-desc, .step-text{ font-size:16px; }
     .waitlist-inner, .teaser-inner{ max-width:620px; }
   }
 </style>
@@ -422,11 +404,11 @@
       <div class="pillar reveal d1">
         <div class="pillar-num">02</div>
         <div class="pillar-title" data-i18n="svc2.title">Video</div>
-        <div class="pillar-desc" data-i18n="svc2.desc">Short vertical reels, event recaps and promo clips, edited for Instagram, TikTok and Telegram.</div>
+        <div class="pillar-desc" data-i18n="svc2.desc">Short videos, promo clips and event recaps, edited for Instagram and Telegram.</div>
         <div class="pillar-sample">
-          <span class="pillar-chip" data-i18n="svc2.chip1">Reels</span>
-          <span class="pillar-chip" data-i18n="svc2.chip2">Event recaps</span>
-          <span class="pillar-chip" data-i18n="svc2.chip3">Promos</span>
+          <span class="pillar-chip" data-i18n="svc2.chip1">Short videos</span>
+          <span class="pillar-chip" data-i18n="svc2.chip2">Promo clips</span>
+          <span class="pillar-chip" data-i18n="svc2.chip3">Event recaps</span>
         </div>
       </div>
       <div class="pillar reveal d2">
@@ -453,30 +435,6 @@
   </div>
 </section>
 
-<section class="pillars" id="work">
-  <div class="shell">
-    <div class="section-head">
-      <div class="section-title reveal" data-i18n="work.title">Our work</div>
-      <div class="section-kicker" data-i18n="work.kicker">We're new &mdash; and we'd rather say so</div>
-    </div>
-    <div class="pillar-grid">
-      <a class="work-card reveal" href="/app/">
-        <div class="work-thumb"><span class="mark"><svg viewBox="0 0 736 490"><use href="#unciaMark"/></svg></span></div>
-        <div class="work-kicker" data-i18n="work.c1.kicker">Our own project</div>
-        <div class="work-title">UNCIA</div>
-        <div class="work-desc" data-i18n="work.c1.desc">Logo, brand identity and a trilingual website for our own gamified Almaty app. The app is still a concept.</div>
-        <div class="work-link" data-i18n="work.c1.link">See it &rarr;</div>
-      </a>
-      <a class="work-card empty reveal d1" href="#contact">
-        <div class="work-thumb">+</div>
-        <div class="work-kicker" data-i18n="work.c2.kicker">Next up</div>
-        <div class="work-title" data-i18n="work.c2.title">Your project</div>
-        <div class="work-desc" data-i18n="work.c2.desc">We're booking our first client projects now. Tell us what you're working on.</div>
-        <div class="work-link" data-i18n="work.c2.link">Get a quote &rarr;</div>
-      </a>
-    </div>
-  </div>
-</section>
 
 <section class="roadmap" id="process">
   <div class="shell">
@@ -604,10 +562,10 @@
       "svc1.chip2": "Product",
       "svc1.chip3": "Events",
       "svc2.title": "Video",
-      "svc2.desc": "Short vertical reels, event recaps and promo clips, edited for Instagram, TikTok and Telegram.",
-      "svc2.chip1": "Reels",
-      "svc2.chip2": "Event recaps",
-      "svc2.chip3": "Promos",
+      "svc2.desc": "Short videos, promo clips and event recaps, edited for Instagram and Telegram.",
+      "svc2.chip1": "Short videos",
+      "svc2.chip2": "Promo clips",
+      "svc2.chip3": "Event recaps",
       "svc3.title": "Web",
       "svc3.desc": "Fast, clean landing pages and small sites in English, Russian and Kazakh — like the one you're on.",
       "svc3.chip1": "Landing pages",
@@ -618,15 +576,6 @@
       "svc4.chip1": "Logo",
       "svc4.chip2": "Brand kit",
       "svc4.chip3": "Social templates",
-      "work.title": "Our work",
-      "work.kicker": "We're new — and we'd rather say so",
-      "work.c1.kicker": "Our own project",
-      "work.c1.desc": "Logo, brand identity and a trilingual website for our own gamified Almaty app. The app is still a concept.",
-      "work.c1.link": "See it →",
-      "work.c2.kicker": "Next up",
-      "work.c2.title": "Your project",
-      "work.c2.desc": "We're booking our first client projects now. Tell us what you're working on.",
-      "work.c2.link": "Get a quote →",
       "process.title": "How it works",
       "process.kicker": "Four steps",
       "process.s1": "<strong>Talk.</strong> Tell us what you need and where it will be used. We reply with a clear scope and price.",
@@ -677,10 +626,10 @@
       "svc1.chip2": "Предметная",
       "svc1.chip3": "События",
       "svc2.title": "Видео",
-      "svc2.desc": "Короткие вертикальные ролики, обзоры событий и промо — смонтированы для Instagram, TikTok и Telegram.",
-      "svc2.chip1": "Reels",
-      "svc2.chip2": "Репортажи",
-      "svc2.chip3": "Промо",
+      "svc2.desc": "Короткие видео, промо-ролики и обзоры событий — смонтированы для Instagram и Telegram.",
+      "svc2.chip1": "Короткие видео",
+      "svc2.chip2": "Промо-ролики",
+      "svc2.chip3": "Репортажи",
       "svc3.title": "Сайты",
       "svc3.desc": "Быстрые и аккуратные лендинги и небольшие сайты на русском, английском и казахском — как этот.",
       "svc3.chip1": "Лендинги",
@@ -691,15 +640,6 @@
       "svc4.chip1": "Логотип",
       "svc4.chip2": "Брендбук",
       "svc4.chip3": "Шаблоны для соцсетей",
-      "work.title": "Наши работы",
-      "work.kicker": "Мы только начинаем — и говорим об этом честно",
-      "work.c1.kicker": "Наш собственный проект",
-      "work.c1.desc": "Логотип, айдентика и сайт на трёх языках для нашего приложения про Алматы. Само приложение пока на стадии концепта.",
-      "work.c1.link": "Смотреть →",
-      "work.c2.kicker": "Следующий",
-      "work.c2.title": "Ваш проект",
-      "work.c2.desc": "Мы набираем первые клиентские проекты. Расскажите, над чем вы работаете.",
-      "work.c2.link": "Узнать цену →",
       "process.title": "Как мы работаем",
       "process.kicker": "Четыре шага",
       "process.s1": "<strong>Разговор.</strong> Расскажите, что нужно и где это будет использоваться. Мы отвечаем чётким объёмом работ и ценой.",
@@ -750,10 +690,10 @@
       "svc1.chip2": "Өнім",
       "svc1.chip3": "Іс-шаралар",
       "svc2.title": "Бейне",
-      "svc2.desc": "Қысқа тік роликтер, іс-шара шолулары және промо — Instagram, TikTok және Telegram үшін монтаждалған.",
-      "svc2.chip1": "Reels",
-      "svc2.chip2": "Іс-шара шолуы",
-      "svc2.chip3": "Промо",
+      "svc2.desc": "Қысқа бейнелер, промо роликтер және іс-шара шолулары — Instagram және Telegram үшін монтаждалған.",
+      "svc2.chip1": "Қысқа бейнелер",
+      "svc2.chip2": "Промо роликтер",
+      "svc2.chip3": "Іс-шара шолуы",
       "svc3.title": "Сайт",
       "svc3.desc": "Қазақ, орыс және ағылшын тілдеріндегі жылдам әрі таза лендингтер мен шағын сайттар — өзіңіз қарап отырған сияқты.",
       "svc3.chip1": "Лендингтер",
@@ -764,15 +704,6 @@
       "svc4.chip1": "Логотип",
       "svc4.chip2": "Брендбук",
       "svc4.chip3": "Желі шаблондары",
-      "work.title": "Біздің жұмыстар",
-      "work.kicker": "Біз жаңамыз — және мұны ашық айтамыз",
-      "work.c1.kicker": "Өз жобамыз",
-      "work.c1.desc": "Алматы туралы өз қосымшамыз үшін логотип, айдентика және үш тілді сайт. Қосымшаның өзі әзірге тек концепт.",
-      "work.c1.link": "Көру →",
-      "work.c2.kicker": "Келесі",
-      "work.c2.title": "Сіздің жобаңыз",
-      "work.c2.desc": "Біз алғашқы клиент жобаларын қабылдап жатырмыз. Немен айналысатыныңызды айтыңыз.",
-      "work.c2.link": "Бағасын білу →",
       "process.title": "Қалай жұмыс істейміз",
       "process.kicker": "Төрт қадам",
       "process.s1": "<strong>Әңгіме.</strong> Не қажет екенін және қайда қолданылатынын айтыңыз. Біз нақты көлем мен бағамен жауап береміз.",
